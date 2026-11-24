@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { getPublicSiteData } from '@/lib/cms/queries'
+import { getAllServices } from '@/lib/cms/services-data'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -23,9 +24,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    {
+      url: `${BASE_URL}/services`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
   ]
 
-  // 2. Published Project Detail Pages
+  // 2. Dedicated Architectural Service Pages
+  const services = getAllServices()
+  for (const service of services) {
+    routes.push({
+      url: `${BASE_URL}/services/${service.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    })
+  }
+
+  // 3. Published Project Detail Pages
   const projects = siteData?.projects || []
   const seenSlugs = new Set<string>()
 

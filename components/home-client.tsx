@@ -2,6 +2,7 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import { ArrowUpRight, ChevronDown, Volume2, VolumeX } from 'lucide-react'
 import { BrandLogo } from '@/components/brand-logo'
 import { ReviewsSectionSkeleton, FounderSectionSkeleton } from '@/components/ui/skeleton'
@@ -885,6 +886,18 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
                       >
                         <div className="service-description-inner">
                           <p className="service-description-text text-[#FFFFFF]">{description}</p>
+                          {service.slug && (
+                            <div className="mt-4 pt-3 border-t border-white/5">
+                              <Link
+                                href={`/services/${service.slug}`}
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-[#d9b686] hover:text-[#f1cf9e] transition-colors cursor-target"
+                              >
+                                <span>Explore {service.title} Details</span>
+                                <ArrowUpRight size={14} />
+                              </Link>
+                            </div>
+                          )}
                         </div>
                       </div>
                     )}
@@ -898,6 +911,15 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
                 </div>
               )
             })}
+          </div>
+          <div className="mt-12 text-center">
+            <Link
+              href="/services"
+              className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#a8a195] hover:text-[#d9b686] transition-colors cursor-target"
+            >
+              <span>View All Architectural Services &amp; Methodologies</span>
+              <ArrowUpRight size={15} />
+            </Link>
           </div>
         </ScrollReveal>
       </section>

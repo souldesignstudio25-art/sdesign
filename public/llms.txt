@@ -1,10 +1,21 @@
-# S_Designs
-> Independent architecture studio creating quiet, considered spaces for living, working and gathering.
+# S_DE_SIGN — Architecture Studio & Spatial Practice
+> Independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design.
 
-## Key pages
-- https://sdesign.co.in/: Home – studio overview, services, contact.
-- https://sdesign.co.in/work/: Project case‑studies (residential, commercial, interior, landscape, renovation).
+## Core Services & Disciplines
+- https://sdesign.co.in/: Home – studio philosophy, approach, and project showcase.
+- https://sdesign.co.in/work/: Architecture portfolio & selected case studies (residential, hospitality, cultural, renovation).
+- https://sdesign.co.in/services/: Architectural design services directory.
+- https://sdesign.co.in/services/residential-architecture: Residential architecture firm & luxury villa design.
+- https://sdesign.co.in/services/interior-architecture: Interior architecture, spatial curation & bespoke millwork.
+- https://sdesign.co.in/services/exterior-architecture: Exterior architecture, building envelopes & facade elevation design.
+- https://sdesign.co.in/services/landscape-architecture: Landscape architecture, reflection pools & courtyard spatial integration.
+- https://sdesign.co.in/services/commercial-architecture: Commercial architecture, boutique hospitality & design ateliers.
+- https://sdesign.co.in/services/renovation-adaptive-reuse: Architectural renovation, historic restoration & adaptive reuse.
+
+## Locations & Service Areas
+- Chennai, India (Primary Regional Studio & Area Served)
+- Lisbon, Portugal & Worldwide (International Spatial Practice)
 
 ## Contact
 - Email: adithiruthiparambil12@gmail.com
-- City: Chennai, India
+- Inquiries: https://sdesign.co.in/#contact

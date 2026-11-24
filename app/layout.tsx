@@ -12,10 +12,11 @@ import './globals.css'
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPublicSiteData()
   const homeSeo = data.seo.home
-  const title = homeSeo?.seoTitle || `${data.settings.studioName} — Architecture`
+  const title =
+    homeSeo?.seoTitle || `${data.settings.studioName} — Architecture Studio & Residential Design Practice`
   const description =
     homeSeo?.metaDescription ||
-    'S_Designs is an independent architecture studio creating quiet, considered spaces for living, working and gathering.'
+    'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.'
   const favicon = data.settings.faviconUrl || '/s-design-logo.jpg'
   const ogImage = homeSeo?.ogImage || favicon
 
@@ -58,12 +59,34 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const homeSeo = data.seo?.home
   const organizationJson = JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: data.settings.studioName,
+    '@type': ['ArchitecturalFirm', 'ProfessionalService'],
+    name: data.settings.studioName || 'S_DE_SIGN',
+    alternateName: 'S_Designs Architecture Studio',
     url: 'https://sdesign.co.in',
-    logo: homeSeo?.ogImage || data.settings.faviconUrl || '/s-design-logo.jpg',
+    logo: homeSeo?.ogImage || data.settings.faviconUrl || 'https://sdesign.co.in/s-design-logo.jpg',
+    image: homeSeo?.ogImage || 'https://sdesign.co.in/s-design-logo.jpg',
+    description:
+      homeSeo?.metaDescription ||
+      'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Chennai',
+      addressRegion: 'Tamil Nadu',
+      addressCountry: 'IN',
+    },
+    areaServed: ['Chennai, India', 'Lisbon, Portugal', 'Worldwide'],
     sameAs: ['https://instagram.com/', 'https://linkedin.com/'],
-    areaServed: 'Chennai, India',
+    priceRange: '$$$$',
+    knowsAbout: [
+      'Residential Architecture',
+      'Architectural Design',
+      'Interior Architecture',
+      'Exterior Architecture & Building Facade Design',
+      'Landscape Architecture',
+      'Sustainable Architecture',
+      'Luxury Villa Design',
+      'Adaptive Reuse & Renovation',
+    ],
   })
 
   const bodyStyle: Record<string, string> = {}
@@ -140,7 +163,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: organizationJson }}
         />
-        <div className="sr-only">{data.settings.studioName} Architecture</div>
+        <h1 className="sr-only">{data.settings.studioName} — Architecture Studio &amp; Residential Design</h1>
         <ArchitecturalLoaderProvider
           studioName={data.settings.studioName}
           studioSubtitle={data.settings.studioSubtitle}

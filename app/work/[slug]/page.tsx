@@ -81,6 +81,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
+const CATEGORY_TO_SERVICE_SLUG: Record<string, string> = {
+  Residential: 'residential-architecture',
+  Hospitality: 'commercial-architecture',
+  Cultural: 'commercial-architecture',
+  Renovation: 'renovation-adaptive-reuse',
+}
+
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const [{ project, allProjects }, siteData] = await Promise.all([
@@ -293,7 +300,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {String(allProjects.length).padStart(2, '0')}
             </span>
           </div>
-          <p className="eyebrow">{project.category} · {project.location}</p>
+          <p className="eyebrow">
+            {CATEGORY_TO_SERVICE_SLUG[project.category] ? (
+              <Link
+                href={`/services/${CATEGORY_TO_SERVICE_SLUG[project.category]}`}
+                className="hover:text-[#d9b686] transition-colors"
+                title={`Explore ${project.category} Architecture Services`}
+              >
+                {project.category} Architecture
+              </Link>
+            ) : (
+              <span>{project.category}</span>
+            )}{' '}
+            · {project.location}
+          </p>
           <StaggeredHeading
             tag="h1"
             animateOnInit
