@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
 import { Mail, MessageSquare, X } from 'lucide-react'
+import { trackWhatsAppClick, trackEmailClick, trackContactClick } from '@/lib/analytics/ga4'
 import type { ContactBotSettings } from '@/lib/cms/types'
 import { DEFAULT_CONTACT_BOT_SETTINGS } from '@/lib/cms/defaults'
 
@@ -135,6 +136,7 @@ export function ContactBot({
       if (next) {
         // Refresh settings on open to ensure real-time accuracy
         refreshSettings()
+        trackContactClick('open_contact_bot', 'floating_widget')
       }
       return next
     })
@@ -305,6 +307,15 @@ export function ContactBot({
             href={item.href}
             target={item.isExternal ? '_blank' : undefined}
             rel={item.isExternal ? 'noopener noreferrer' : undefined}
+            onClick={() => {
+              if (item.id === 'whatsapp') {
+                trackWhatsAppClick('contact_bot')
+              } else if (item.id === 'email') {
+                trackEmailClick('contact_bot')
+              } else {
+                trackContactClick(`channel_${item.id}`, 'contact_bot')
+              }
+            }}
             className="contact-bot-icon-btn cursor-target"
             data-crosshair-target
             data-cursor-label={item.label}

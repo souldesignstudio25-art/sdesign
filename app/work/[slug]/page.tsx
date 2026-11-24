@@ -11,6 +11,9 @@ import { SiteHeaderNav } from '@/components/site-header-nav'
 import { StaggeredHeading } from '@/components/motion/staggered-heading'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { ProjectNavigationFeedbackGuard } from '@/components/project-navigation-feedback-guard'
+import { ProjectAnalyticsTracker } from '@/components/analytics/project-analytics-tracker'
+import { ProjectLikeButton } from '@/components/project-like-button'
+import { ContactCtaLink } from '@/components/contact-cta-link'
 import { getPublishedProjectBySlug, getPublicSiteData } from '@/lib/cms/queries'
 import { isVideoSource, getCloudinaryVideoThumbnail } from '@/lib/storage/video-thumbnails'
 
@@ -259,6 +262,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="project-detail-page">
+      <ProjectAnalyticsTracker slug={project.slug} name={project.title} />
       {/* Exit Intent & Navigation Project Review Interceptor */}
       <ProjectNavigationFeedbackGuard project={project} />
 
@@ -305,9 +309,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <div className="detail-hero-scroll">
               Scroll to explore <span>↓</span>
             </div>
-            <Link href="/#contact" className="text-link detail-hero-cta cursor-target" data-cursor-label="Contact">
-              Start a conversation <ArrowUpRight size={15} />
-            </Link>
+            <ProjectLikeButton
+              projectSlug={project.slug}
+              projectName={project.title}
+            />
+            <ContactCtaLink source="project_detail_hero" />
           </div>
         </div>
       </section>
@@ -411,9 +417,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             Next: {nextProject.title} <ArrowRight size={14} />
           </Link>
         </div>
-        <Link className="text-link cursor-target" href="/#contact" data-cursor-label="Contact">
+        <ContactCtaLink source="project_detail_footer" className="text-link cursor-target">
           Start a conversation <ArrowUpRight size={16} />
-        </Link>
+        </ContactCtaLink>
       </footer>
     </main>
   )

@@ -11,6 +11,7 @@ import { StaggeredHeading } from '@/components/motion/staggered-heading'
 import { ParallaxImage } from '@/components/motion/parallax-image'
 import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { HamburgerButton } from '@/components/motion/hamburger-button'
+import { trackEnquirySubmit, trackEmailClick, trackContactClick } from '@/lib/analytics/ga4'
 import type { Project } from '@/lib/projects'
 import type { PublicSiteData, CmsNavItem } from '@/lib/cms/types'
 import { getOptimizedImageUrl } from '@/lib/storage/image-optimization'
@@ -479,6 +480,7 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
         throw new Error(data.error || 'Failed to submit inquiry. Please try again.')
       }
       setSubmitted(true)
+      trackEnquirySubmit(enquiryForm.projectType || 'General Inquiry')
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Failed to submit inquiry. Please try again.')
     } finally {
@@ -943,7 +945,14 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
             <ScrollReveal delay={0.2}>
               <p>{homepage.contactDescription}</p>
               <div className="contact-details">
-                <span>{settings.email}</span>
+                <a
+                  href={`mailto:${settings.email}`}
+                  onClick={() => trackEmailClick('contact_section')}
+                  className="hover:text-[var(--bronze,#d9b686)] transition-colors cursor-target"
+                  data-cursor-label="Email"
+                >
+                  {settings.email}
+                </a>
                 <span>{settings.officeAddress}</span>
               </div>
             </ScrollReveal>
@@ -976,7 +985,12 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleEnquirySubmit} suppressHydrationWarning className="enquiry-form">
+              <form
+                onSubmit={handleEnquirySubmit}
+                onFocusCapture={() => trackContactClick('form_interaction', 'contact_section')}
+                suppressHydrationWarning
+                className="enquiry-form"
+              >
                 <div className="enquiry-grid-2">
                   <label>
                     Full Name *

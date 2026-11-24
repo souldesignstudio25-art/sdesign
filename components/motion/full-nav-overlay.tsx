@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { ArrowUpRight, X } from 'lucide-react'
 import { BrandLogo } from '@/components/brand-logo'
+import { trackEmailClick, trackContactClick } from '@/lib/analytics/ga4'
 import type { CmsNavItem, CmsWebsiteSettings } from '@/lib/cms/types'
 
 type FullNavOverlayProps = {
@@ -178,6 +179,9 @@ export function FullNavOverlay({
                   <Link
                     href={item.href}
                     onClick={() => {
+                      if (item.id === 'contact' || item.href.includes('contact')) {
+                        trackContactClick('nav_menu_contact', 'full_nav_overlay')
+                      }
                       document.documentElement.classList.remove('nav-locked')
                       window.dispatchEvent(new CustomEvent('lenis:start'))
                       onClose()
@@ -219,6 +223,7 @@ export function FullNavOverlay({
             <span className="meta-label">INQUIRIES</span>
             <a
               href={`mailto:${settings?.email || 'adithiruthiparambil12@gmail.com'}`}
+              onClick={() => trackEmailClick('full_nav_overlay')}
               className="meta-value cursor-target"
               data-cursor-label="Contact"
             >

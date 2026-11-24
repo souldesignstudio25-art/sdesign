@@ -5,6 +5,7 @@ import ClickSpark from '@/components/ClickSpark'
 import { ArchitecturalLoaderProvider } from '@/components/architectural-loader'
 import { MediaProtectionGuard } from '@/components/media-protection-guard'
 import { SiteAccessories } from '@/components/site-accessories'
+import { GoogleAnalytics } from '@/components/analytics/google-analytics'
 import { getPublicSiteData } from '@/lib/cms/queries'
 import './globals.css'
 
@@ -167,6 +168,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           linkedinUrl={data.settings.linkedinUrl}
         />
         <MediaProtectionGuard />
+        <GoogleAnalytics />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
