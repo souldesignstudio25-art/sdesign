@@ -1,0 +1,450 @@
+export type ProjectStatus = 'draft' | 'published'
+export type MediaType = 'image' | 'video'
+
+export type CmsMediaItem = {
+  type: MediaType
+  url: string
+  publicId?: string | null
+  alt?: string
+  posterUrl?: string | null
+  duration?: number | null
+  width?: number | null
+  height?: number | null
+  fileSize?: number | null
+}
+
+export type CmsProjectImage = {
+  id: string
+  projectId: string
+  url: string
+  type?: MediaType
+  posterUrl?: string | null
+  duration?: number | null
+  altText: string
+  displayOrder: number
+}
+
+export type CmsProjectGalleryItem = CmsProjectImage
+
+export type CmsProject = {
+  id: string
+  slug: string
+  title: string
+  meta: string
+  location: string
+  year: string
+  type: string
+  category: string
+  area: string
+  size: 'large' | 'small'
+  shortDescription: string
+  fullDescription: string
+  mainImage: string
+  mainMediaType?: MediaType
+  mainVideoUrl?: string
+  mainPosterUrl?: string
+  mainImageAlt: string
+  thumbnailImage: string
+  details: string[]
+  galleryImages: CmsProjectGalleryItem[]
+  displayOrder: number
+  status: ProjectStatus
+  featured: boolean
+  seoTitle: string
+  seoDescription: string
+  updatedAt: string
+  featuresSectionNumber?: string
+  featuresSectionHeading?: string
+  featuresHeading?: string
+  featuresAccentHeading?: string
+  featuresDescription?: string
+  featuresSupportingText?: string
+}
+
+export type CmsService = {
+  id: string
+  title: string
+  slug: string
+  shortDescription: string
+  fullDescription: string
+  imageUrl: string
+  mediaType?: MediaType
+  videoUrl?: string
+  posterUrl?: string
+  iconName: string
+  displayOrder: number
+  status: ProjectStatus
+  seoTitle: string
+  seoDescription: string
+}
+
+export type StudioTeamMember = {
+  id: string
+  name: string
+  role: string
+  bio: string
+  photoUrl: string
+}
+
+export type StudioExtraSection = {
+  id: string
+  title: string
+  content: string
+}
+
+export type FounderStat = {
+  value: string
+  label: string
+  detail: string
+}
+
+export type CmsFounderInfo = {
+  visible: boolean
+  displayOrder: number
+  kicker: string
+  label: string
+  heading: string
+  founderName: string
+  founderRole: string
+  founderPhoto: string
+  founderBio: string
+  philosophy: string
+  quote: string
+  stats: FounderStat[]
+  showStats?: boolean
+  buttonText: string
+  buttonHref: string
+  showButton?: boolean
+  illustrationUrl?: string
+  showIllustration?: boolean
+}
+
+export type CmsStudioInfo = {
+  kicker: string
+  heading: string
+  accentHeading: string
+  introText: string
+  description: string
+  philosophy: string
+  vision: string
+  mission: string
+  history: string
+  studioImages: string[]
+  studioImage?: string
+  studioMediaType?: MediaType
+  studioVideoUrl?: string
+  studioPosterUrl?: string
+  introVideoUrl?: string
+  introVideoPoster?: string
+  teamMembers: StudioTeamMember[]
+  extraSections: StudioExtraSection[]
+  founder?: CmsFounderInfo
+  studioHeadingSize?: string
+  studioSubheadingSize?: string
+}
+
+export type CmsTestimonial = {
+  id: string
+  clientName: string
+  projectName?: string
+  projectDescription?: string
+  designation: string
+  headline: string
+  quote: string
+  clientPhoto: string
+  videoUrl: string
+  posterImage: string
+  backgroundImage: string
+  rating: number
+  projectId: string | null
+  featured: boolean
+  displayOrder: number
+  status: ProjectStatus
+}
+
+export type CmsTypographySettings = {
+  display: string
+  body: string
+  heroTitleSize?: string
+  heroSubtitleSize?: string
+  studioHeadingSize?: string
+  studioSubheadingSize?: string
+  studioBodySize?: string
+  workTitleSize?: string
+  workDescSize?: string
+  workDescGap?: string
+  workSlideGap?: string
+  workImageScale?: string
+  workSecondaryImageSize?: string
+  approachHeadingSize?: string
+  approachBodySize?: string
+  servicesTitleSize?: string
+  reviewsHeadingSize?: string
+  reviewsClientHeadingSize?: string
+  reviewsDescSize?: string
+  reviewsCenterCardScale?: string
+  founderHeadingSize?: string
+  founderAboutSize?: string
+  founderAboutWeight?: string
+  founderAboutLineHeight?: string
+  founderAboutLetterSpacing?: string
+  founderQuoteSize?: string
+  founderStat1NumberSize?: string
+  founderStat1NumberWeight?: string
+  founderStat1NumberLineHeight?: string
+  founderStat1LabelSize?: string
+  founderStat1LabelWeight?: string
+  founderStat1LabelLineHeight?: string
+  founderStat2NumberSize?: string
+  founderStat2NumberWeight?: string
+  founderStat2NumberLineHeight?: string
+  founderStat2LabelSize?: string
+  founderStat2LabelWeight?: string
+  founderStat2LabelLineHeight?: string
+  founderStat3NumberSize?: string
+  founderStat3NumberWeight?: string
+  founderStat3NumberLineHeight?: string
+  founderStat3LabelSize?: string
+  founderStat3LabelWeight?: string
+  founderStat3LabelLineHeight?: string
+  founderBodySize?: string
+  founderBodyWeight?: string
+  founderBodyLineHeight?: string
+  founderBodyLetterSpacing?: string
+  contactHeadingSize?: string
+  contactBodySize?: string
+  kickerSize?: string
+}
+
+export type CmsWebsiteSettings = {
+  studioName: string
+  studioSubtitle: string
+  tagline: string
+  mainLogoUrl: string
+  altLogoUrl: string
+  lightLogoUrl: string
+  darkLogoUrl: string
+  faviconUrl: string
+  footerLogoUrl: string
+  brandColors: {
+    ivory: string
+    paper: string
+    ink: string
+    bronze: string
+    bronzeLight: string
+  }
+  typography: CmsTypographySettings
+  email: string
+  phone: string
+  whatsapp: string
+  officeAddress: string
+  mapsUrl: string
+  businessHours: string
+  instagramUrl: string
+  facebookUrl: string
+  pinterestUrl: string
+  linkedinUrl: string
+  otherSocials: { label: string; url: string }[]
+  footerCopyright: string
+  contactBot?: ContactBotSettings
+}
+
+export type ContactBotSettings = {
+  instagram: {
+    enabled: boolean
+    url: string
+  }
+  whatsapp: {
+    enabled: boolean
+    value: string
+  }
+  email: {
+    enabled: boolean
+    value: string
+  }
+  facebook: {
+    enabled: boolean
+    url: string
+  }
+  linkedin: {
+    enabled: boolean
+    url: string
+  }
+}
+
+export type CmsContactBotSettings = ContactBotSettings
+
+export type CmsHomepageContent = {
+  heroEyebrow: string
+  heroTitleLine1: string
+  heroTitleLine2: string
+  heroDescription: string
+  heroImageUrl: string
+  heroMediaType?: MediaType
+  heroVideoUrl?: string
+  heroPosterUrl?: string
+  heroIndexText: string
+  heroStudioName: string
+  heroStudioSubtitle: string
+  selectedWorkKicker: string
+  selectedWorkHeading: string
+  approachKicker: string
+  approachHeading1: string
+  approachHeading2: string
+  approachDescription: string
+  approachImageUrl: string
+  approachMediaType?: MediaType
+  approachVideoUrl?: string
+  approachPosterUrl?: string
+  approachPublicId?: string
+  approachAlt?: string
+  approachMedia?: {
+    type: MediaType
+    url: string
+    publicId?: string
+    posterUrl?: string
+    alt?: string
+  }
+  initiateKicker: string
+  initiateHeading: string
+  initiateSubtitle: string
+  initiateDescription: string
+  initiateCtaLabel: string
+  initiateCtaHref: string
+  servicesKicker: string
+  servicesNote: string
+  reviewsKicker: string
+  reviewsHeading1: string
+  reviewsHeading2: string
+  contactKicker: string
+  contactHeading1: string
+  contactHeading2: string
+  contactDescription: string
+}
+
+export type CmsNavItem = {
+  id: string
+  label: string
+  href: string
+  subtitle: string
+  previewImage: string
+  displayOrder: number
+  visible: boolean
+  isCta: boolean
+}
+
+export type CmsMediaAsset = {
+  id: string
+  type: MediaType
+  storagePath: string
+  publicUrl: string
+  publicId?: string | null
+  posterUrl?: string | null
+  fileName: string
+  mimeType: string
+  fileSize: number
+  width: number | null
+  height: number | null
+  duration?: number | null
+  altText: string
+  createdAt: string
+  updatedAt?: string
+}
+
+export type CmsSeoSetting = {
+  pageKey: string
+  seoTitle: string
+  metaDescription: string
+  ogImage: string
+  ogTitle: string
+  ogDescription: string
+  canonicalUrl: string
+}
+
+export type CmsActivityLog = {
+  id: string
+  actorEmail: string
+  action: string
+  entityType: string
+  entityLabel: string
+  createdAt: string
+}
+
+export type CmsProjectReview = {
+  id: string
+  projectId: string
+  projectSlug: string
+  projectName: string
+  rating: number
+  feedback?: string
+  visitorId?: string
+  createdAt: string
+  updatedAt?: string
+}
+
+export type ProjectAnalyticsSummary = {
+  totalReviews: number
+  overallAverageRating: number
+  totalRatedProjects: number
+  totalProjects: number
+  highestRatedProject: {
+    id: string
+    title: string
+    slug: string
+    thumbnail: string
+    averageRating: number
+    reviewsCount: number
+  } | null
+  mostRatedProject: {
+    id: string
+    title: string
+    slug: string
+    thumbnail: string
+    averageRating: number
+    reviewsCount: number
+  } | null
+  projects: Array<{
+    id: string
+    title: string
+    slug: string
+    thumbnail: string
+    category: string
+    year: string
+    averageRating: number
+    reviewsCount: number
+    distribution: Record<1 | 2 | 3 | 4 | 5, number>
+    reviews: CmsProjectReview[]
+  }>
+}
+
+export type PublicSiteData = {
+  projects: CmsProject[]
+  services: CmsService[]
+  studioInfo: CmsStudioInfo
+  founder: CmsFounderInfo
+  testimonials: CmsTestimonial[]
+  settings: CmsWebsiteSettings
+  homepage: CmsHomepageContent
+  navigation: CmsNavItem[]
+  seo: Record<string, CmsSeoSetting>
+}
+
+export type EnquiryStatus = 'new' | 'contacted' | 'archived'
+
+export type CmsEnquiry = {
+  id: string
+  name: string
+  email: string
+  phone?: string
+  location?: string
+  projectType?: string
+  budget?: string
+  message: string
+  status: EnquiryStatus
+  notes?: string
+  createdAt: string
+  updatedAt?: string
+  ip?: string
+  userAgent?: string
+}
+

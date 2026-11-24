@@ -1,0 +1,1129 @@
+'use client'
+
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { ArrowUpRight, ChevronDown, Volume2, VolumeX } from 'lucide-react'
+import { BrandLogo } from '@/components/brand-logo'
+import { ReviewsSectionSkeleton, FounderSectionSkeleton } from '@/components/ui/skeleton'
+import { WorkHorizontalShowcase } from '@/components/work-horizontal-showcase'
+import { HeroCinematic } from '@/components/motion/hero-cinematic'
+import { StaggeredHeading } from '@/components/motion/staggered-heading'
+import { ParallaxImage } from '@/components/motion/parallax-image'
+import { ScrollReveal } from '@/components/motion/scroll-reveal'
+import { HamburgerButton } from '@/components/motion/hamburger-button'
+import type { Project } from '@/lib/projects'
+import type { PublicSiteData, CmsNavItem } from '@/lib/cms/types'
+import { getOptimizedImageUrl } from '@/lib/storage/image-optimization'
+
+const FullNavOverlay = dynamic(
+  () => import('@/components/motion/full-nav-overlay').then((mod) => mod.FullNavOverlay),
+  { ssr: false }
+)
+
+const CinematicReviews = dynamic(
+  () => import('@/components/cinematic-reviews').then((mod) => mod.CinematicReviews),
+  {
+    loading: () => <ReviewsSectionSkeleton />,
+  }
+)
+
+const FounderSection = dynamic(
+  () => import('@/components/founder-section').then((mod) => mod.FounderSection),
+  {
+    loading: () => <FounderSectionSkeleton />,
+  }
+)
+
+const SECTION_IDS = ['studio', 'selected-work', 'services', 'reviews', 'founder', 'contact'] as const
+
+function VideoMuteButton({
+  isMuted,
+  isVisible,
+  onToggle,
+  label,
+}: {
+  isMuted: boolean
+  isVisible: boolean
+  onToggle: (e: React.MouseEvent<HTMLButtonElement>) => void
+  label: string
+}) {
+  return (
+    <div className={`video-audio-toggle ${isVisible ? 'is-visible' : ''}`} suppressHydrationWarning>
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-label={isMuted ? `Unmute ${label}` : `Mute ${label}`}
+        aria-pressed={!isMuted}
+        title={isMuted ? 'Unmute' : 'Mute'}
+        className="video-audio-toggle-btn"
+        suppressHydrationWarning
+      >
+        {isMuted ? (
+          <VolumeX className="w-4 h-4 text-[#f5f1e9]/80" />
+        ) : (
+          <Volume2 className="w-4 h-4 text-[#d9b686]" />
+        )}
+      </button>
+      <span className="video-audio-tooltip" role="tooltip" suppressHydrationWarning>
+        {isMuted ? 'Unmute' : 'Mute'}
+      </span>
+    </div>
+  )
+}
+
+function ApproachMediaVideo({
+  videoUrl,
+  posterUrl,
+  altText,
+  fallbackImageUrl,
+}: {
+  videoUrl: string
+  posterUrl?: string
+  altText?: string
+  fallbackImageUrl?: string
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [hasApproached, setHasApproached] = useState(false)
+  const [hasError, setHasError] = useState(false)
+  const [isMuted, setIsMuted] = useState(false)
+  const [isActive, setIsActive] = useState(false)
+  const userMutePreferenceRef = useRef<boolean | null>(null)
+
+  // IntersectionObserver to defer video source until approaching viewport
+  useEffect(() => {
+    if (hasApproached) return
+    const el = containerRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setHasApproached(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setHasApproached(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '300px 0px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [hasApproached])
+
+  const handleToggleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const video = videoRef.current
+    if (!video) return
+    const nextMuted = !video.muted
+    userMutePreferenceRef.current = nextMuted
+    video.muted = nextMuted
+    setIsMuted(nextMuted)
+    if (video.paused) {
+      video.play().catch(() => {})
+    }
+  }
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video || hasError) return
+
+    const handleOtherVideo = (e: Event) => {
+      const customEvent = e as CustomEvent<{ id: string }>
+      if (customEvent.detail?.id !== 'our-approach') {
+        video.pause()
+        setIsActive(false)
+      }
+    }
+    window.addEventListener('sdesign:activevideo', handleOtherVideo)
+
+    const handleVolumeChange = () => {
+      setIsMuted(video.muted)
+    }
+    video.addEventListener('volumechange', handleVolumeChange)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            window.dispatchEvent(
+              new CustomEvent('sdesign:activevideo', { detail: { id: 'our-approach' } })
+            )
+            if (userMutePreferenceRef.current === true) {
+              video.muted = true
+              setIsMuted(true)
+              video.play().catch(() => {})
+              setIsActive(true)
+            } else {
+              video.muted = false
+              setIsMuted(false)
+              const playPromise = video.play()
+              if (playPromise !== undefined) {
+                playPromise
+                  .then(() => {
+                    setIsActive(true)
+                    setIsMuted(false)
+                  })
+                  .catch(() => {
+                    // Browser blocked autoplay with sound -> fallback to muted
+                    video.muted = true
+                    setIsMuted(true)
+                    video
+                      .play()
+                      .then(() => {
+                        setIsActive(true)
+                      })
+                      .catch(() => {})
+                  })
+              } else {
+                setIsActive(true)
+              }
+            }
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.5) {
+            video.pause()
+            setIsActive(false)
+          }
+        }
+      },
+      { threshold: [0, 0.5] }
+    )
+
+    observer.observe(video)
+
+    return () => {
+      window.removeEventListener('sdesign:activevideo', handleOtherVideo)
+      video.removeEventListener('volumechange', handleVolumeChange)
+      observer.disconnect()
+    }
+  }, [hasError, videoUrl])
+
+  if (hasError && (fallbackImageUrl || posterUrl)) {
+    return (
+      <ParallaxImage
+        src={fallbackImageUrl || posterUrl}
+        alt={altText || 'Architectural design approach'}
+        className="statement-parallax-stage"
+        enableClipReveal
+        parallaxSpeed={12}
+      />
+    )
+  }
+
+  return (
+    <div ref={containerRef} className="w-full h-full">
+      <ParallaxImage
+        className="statement-parallax-stage approach-video-stage video-portrait aspect-[5/7]"
+        aspectRatio="5 / 7"
+        enableClipReveal
+        parallaxSpeed={12}
+        alt={altText || 'Our architectural approach'}
+        overlay={
+          <VideoMuteButton
+            isMuted={isMuted}
+            isVisible={isActive}
+            onToggle={handleToggleMute}
+            label="Our Approach video"
+          />
+        }
+      >
+        <video
+          ref={videoRef}
+          src={hasApproached ? videoUrl : undefined}
+          poster={
+            posterUrl
+              ? getOptimizedImageUrl(posterUrl, { width: 960, quality: 'auto' })
+              : fallbackImageUrl
+              ? getOptimizedImageUrl(fallbackImageUrl, { width: 960, quality: 'auto' })
+              : undefined
+          }
+          loop
+          playsInline
+          preload={hasApproached ? 'metadata' : 'none'}
+          disablePictureInPicture
+          controlsList="nodownload nofullscreen noremoteplayback"
+          onContextMenu={(e) => e.preventDefault()}
+          onError={() => setHasError(true)}
+          aria-label={altText || 'Architectural design approach video'}
+          className="w-full h-full object-cover object-center select-none"
+          suppressHydrationWarning
+        />
+      </ParallaxImage>
+    </div>
+  )
+}
+
+function StudioMediaVideo({
+  videoUrl,
+  posterUrl,
+}: {
+  videoUrl: string
+  posterUrl?: string
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [hasApproached, setHasApproached] = useState(false)
+  const [isPortrait, setIsPortrait] = useState(true)
+  const [isMuted, setIsMuted] = useState(false)
+  const [isActive, setIsActive] = useState(false)
+  const userMutePreferenceRef = useRef<boolean | null>(null)
+
+  // IntersectionObserver to defer video source until approaching viewport
+  useEffect(() => {
+    if (hasApproached) return
+    const el = containerRef.current
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      setHasApproached(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setHasApproached(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '300px 0px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [hasApproached])
+
+  const handleToggleMute = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    const video = videoRef.current
+    if (!video) return
+    const nextMuted = !video.muted
+    userMutePreferenceRef.current = nextMuted
+    video.muted = nextMuted
+    setIsMuted(nextMuted)
+    if (video.paused) {
+      video.play().catch(() => {})
+    }
+  }
+
+  const handleLoadedMetadata = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const v = e.currentTarget
+    if (v.videoWidth && v.videoHeight) {
+      setIsPortrait(v.videoHeight > v.videoWidth)
+    }
+  }
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (video && video.readyState >= 1 && video.videoWidth && video.videoHeight) {
+      setIsPortrait(video.videoHeight > video.videoWidth)
+    }
+  }, [videoUrl])
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const handleOtherVideo = (e: Event) => {
+      const customEvent = e as CustomEvent<{ id: string }>
+      if (customEvent.detail?.id !== 'studio-note') {
+        video.pause()
+        setIsActive(false)
+      }
+    }
+    window.addEventListener('sdesign:activevideo', handleOtherVideo)
+
+    const handleVolumeChange = () => {
+      setIsMuted(video.muted)
+    }
+    video.addEventListener('volumechange', handleVolumeChange)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            window.dispatchEvent(
+              new CustomEvent('sdesign:activevideo', { detail: { id: 'studio-note' } })
+            )
+            if (userMutePreferenceRef.current === true) {
+              video.muted = true
+              setIsMuted(true)
+              video.play().catch(() => {})
+              setIsActive(true)
+            } else {
+              video.muted = false
+              setIsMuted(false)
+              const playPromise = video.play()
+              if (playPromise !== undefined) {
+                playPromise
+                  .then(() => {
+                    setIsActive(true)
+                    setIsMuted(false)
+                  })
+                  .catch(() => {
+                    // Browser blocked autoplay with sound -> fallback to muted
+                    video.muted = true
+                    setIsMuted(true)
+                    video
+                      .play()
+                      .then(() => {
+                        setIsActive(true)
+                      })
+                      .catch(() => {})
+                  })
+              } else {
+                setIsActive(true)
+              }
+            }
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.5) {
+            video.pause()
+            setIsActive(false)
+          }
+        }
+      },
+      { threshold: [0, 0.5] }
+    )
+
+    observer.observe(video)
+
+    return () => {
+      window.removeEventListener('sdesign:activevideo', handleOtherVideo)
+      video.removeEventListener('volumechange', handleVolumeChange)
+      observer.disconnect()
+    }
+  }, [videoUrl])
+
+  return (
+    <div
+      ref={containerRef}
+      className={`intro-parallax-stage studio-video-card relative overflow-hidden rounded-lg ${
+        isPortrait ? 'video-portrait aspect-[5/7]' : 'video-landscape aspect-[16/9]'
+      }`}
+    >
+      <video
+        ref={videoRef}
+        src={hasApproached ? videoUrl : undefined}
+        poster={posterUrl ? getOptimizedImageUrl(posterUrl, { width: 960, quality: 'auto' }) : undefined}
+        onLoadedMetadata={handleLoadedMetadata}
+        loop
+        playsInline
+        preload={hasApproached ? 'metadata' : 'none'}
+        disablePictureInPicture
+        controlsList="nodownload nofullscreen noremoteplayback"
+        onContextMenu={(e) => e.preventDefault()}
+        className="w-full h-full object-cover object-center select-none"
+        suppressHydrationWarning
+      />
+      <VideoMuteButton
+        isMuted={isMuted}
+        isVisible={isActive}
+        onToggle={handleToggleMute}
+        label="Studio Note video"
+      />
+    </div>
+  )
+}
+
+const DesktopNav = React.memo(function DesktopNav({
+  visibleNav,
+  activeSection,
+}: {
+  visibleNav: CmsNavItem[]
+  activeSection: string
+}) {
+  return (
+    <nav className="desktop-nav" aria-label="Primary navigation">
+      {visibleNav.map((item) => {
+        const sectionKey = item.href.replace('/#', '').replace('#', '')
+        const href = item.href.startsWith('/#') ? item.href.slice(1) : item.href
+        const isCurrent = activeSection === sectionKey
+        return (
+          <a
+            key={item.id}
+            href={href}
+            className={`cursor-target ${isCurrent ? 'is-active' : ''}`}
+            aria-current={isCurrent ? 'location' : undefined}
+          >
+            {item.label}
+          </a>
+        )
+      })}
+    </nav>
+  )
+})
+
+export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
+  const [isNavOpen, setIsNavOpen] = useState(false)
+  const [enquiryForm, setEnquiryForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    location: '',
+    projectType: '',
+    message: '',
+  })
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
+
+  const handleEnquirySubmit = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setSubmitError(null)
+
+    try {
+      const res = await fetch('/api/enquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(enquiryForm),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data.error || 'Failed to submit inquiry. Please try again.')
+      }
+      setSubmitted(true)
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'Failed to submit inquiry. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }, [enquiryForm])
+  const [activeSection, setActiveSection] = useState<string>('')
+  const [expandedServiceId, setExpandedServiceId] = useState<string | null>(null)
+
+  const toggleService = useCallback((id: string) => {
+    setExpandedServiceId((prev) => (prev === id ? null : id))
+  }, [])
+
+  const { projects, services, studioInfo, founder, testimonials, settings, homepage, navigation } = siteData
+
+  const showcaseProjects: Project[] = useMemo(() => projects.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    meta: p.meta,
+    image: p.mainImage,
+    thumbnailImage: p.thumbnailImage,
+    size: p.size,
+    location: p.location,
+    year: p.year,
+    type: p.type,
+    category: (['Residential', 'Hospitality', 'Cultural', 'Renovation'].includes(p.category)
+      ? p.category
+      : 'Residential') as Project['category'],
+    area: p.area,
+    description: p.shortDescription || p.fullDescription,
+    details: p.details,
+    gallery: p.galleryImages.map((img) => img.url),
+    mainMediaType: p.mainMediaType,
+    mainVideoUrl: p.mainVideoUrl,
+    mainPosterUrl: p.mainPosterUrl,
+    galleryItems: p.galleryImages,
+  })), [projects])
+
+  const visibleNav: CmsNavItem[] = useMemo(() => {
+    const rawNav = Array.isArray(navigation) ? navigation : []
+    const rawVisibleNav = rawNav.filter((n) => n && n.visible && !n.isCta)
+    const hasAboutNav = rawVisibleNav.some(
+      (n) => n && (n.href?.includes('founder') || n.label?.toLowerCase() === 'about')
+    )
+
+    return hasAboutNav
+      ? rawVisibleNav.map((n) =>
+          n.label?.toLowerCase() === 'about' && !n.href?.includes('founder')
+            ? { ...n, href: '#founder' }
+            : n
+        )
+      : (() => {
+          const items = [...rawVisibleNav]
+          const aboutItem: CmsNavItem = {
+            id: 'nav-founder',
+            label: 'About',
+            href: '#founder',
+            subtitle: 'The Founder & Philosophy',
+            previewImage:
+              founder?.founderPhoto ||
+              'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85',
+            displayOrder: 3.5,
+            visible: true,
+            isCta: false,
+          }
+          const contactIdx = items.findIndex((i) => i.href?.includes('contact'))
+          if (contactIdx !== -1) {
+            items.splice(contactIdx, 0, aboutItem)
+          } else {
+            items.push(aboutItem)
+          }
+          return items
+        })()
+  }, [navigation, founder?.founderPhoto])
+
+  const isVideoFile = (url?: string | null) => {
+    if (!url) return false
+    const clean = url.split('?')[0].toLowerCase()
+    return (
+      clean.endsWith('.mp4') ||
+      clean.endsWith('.webm') ||
+      clean.endsWith('.mov') ||
+      clean.endsWith('.ogg') ||
+      clean.includes('/video/upload/')
+    )
+  }
+
+  const defaultReviewVideo =
+    '/uploads/1794576013976-acldi-150784-799174132_medium.mp4'
+
+  const mappedReviews = useMemo(() => {
+    return testimonials.map((t) => {
+      const linkedProject = t.projectId
+        ? projects.find((p) => p.id === t.projectId || p.slug === t.projectId)
+        : undefined
+
+      let resolvedVideo = t.videoUrl?.trim() || ''
+      let resolvedPoster =
+        t.posterImage?.trim() ||
+        (t as { videoPoster?: string }).videoPoster?.trim() ||
+        t.clientPhoto?.trim() ||
+        linkedProject?.mainImage ||
+        ''
+
+      // If posterImage was saved as a video URL, rescue it into videoUrl
+      if (!resolvedVideo && isVideoFile(resolvedPoster)) {
+        resolvedVideo = resolvedPoster
+        resolvedPoster = linkedProject?.mainImage || t.backgroundImage || ''
+      }
+
+      if (!resolvedVideo) {
+        resolvedVideo = defaultReviewVideo
+      }
+
+      if (isVideoFile(resolvedPoster)) {
+        resolvedPoster = linkedProject?.mainImage || t.backgroundImage || ''
+      }
+
+      const resolvedBackground =
+        t.backgroundImage?.trim() && !isVideoFile(t.backgroundImage)
+          ? t.backgroundImage.trim()
+          : linkedProject?.mainImage || resolvedPoster || undefined
+
+      let resolvedQuote = ''
+      if (t.quote && t.quote.trim() && t.quote.trim() !== t.projectDescription?.trim()) {
+        resolvedQuote = t.quote.trim()
+      } else if (t.headline && t.headline.trim()) {
+        resolvedQuote = t.headline.trim()
+      } else if (t.quote && t.quote.trim()) {
+        resolvedQuote = t.quote.trim()
+      } else {
+        resolvedQuote = 'A home shaped by quiet proportion, light, and enduring stillness.'
+      }
+
+      return {
+        id: t.id,
+        client: t.clientName,
+        rating: t.rating,
+        projectName: t.projectName || linkedProject?.title || '',
+        projectDescription: t.projectDescription || linkedProject?.shortDescription || '',
+        quote: resolvedQuote,
+        videoUrl: resolvedVideo,
+        posterImage: resolvedPoster || undefined,
+        backgroundImage: resolvedBackground,
+      }
+    })
+  }, [testimonials, projects])
+
+  useEffect(() => {
+    const updatePointer = (event: PointerEvent) => {
+      document.documentElement.style.setProperty('--pointer-x', `${event.clientX}px`)
+      document.documentElement.style.setProperty('--pointer-y', `${event.clientY}px`)
+    }
+    window.addEventListener('pointermove', updatePointer)
+    return () => window.removeEventListener('pointermove', updatePointer)
+  }, [])
+
+  // Track active navigation state with IntersectionObserver (zero layout thrashing and zero continuous scroll re-renders)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection((prev) => (prev !== entry.target.id ? entry.target.id : prev))
+          }
+        }
+      },
+      {
+        rootMargin: '-20% 0px -55% 0px',
+        threshold: 0,
+      }
+    )
+
+    SECTION_IDS.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    const onHashEvent = (event: Event) => {
+      const detail = (event as CustomEvent<{ hash?: string }>).detail
+      if (detail?.hash) {
+        const targetId = detail.hash.replace(/^#/, '')
+        setActiveSection((prev) => (prev !== targetId ? targetId : prev))
+      }
+    }
+
+    window.addEventListener('site:hashchange', onHashEvent)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('site:hashchange', onHashEvent)
+    }
+  }, [])
+
+  return (
+    <main className="site-shell">
+      {/* Full-Screen Architectural Navigation Overlay */}
+      <FullNavOverlay
+        isOpen={isNavOpen}
+        onClose={() => setIsNavOpen(false)}
+        activeSection={activeSection}
+        navItems={visibleNav}
+        settings={settings}
+      />
+
+      {/* Fixed Site Header */}
+      <header className="site-header">
+        <BrandLogo
+          href="#top"
+          studioName={settings.studioName}
+          studioSubtitle={settings.studioSubtitle}
+          lightLogoUrl={settings.lightLogoUrl}
+          darkLogoUrl={settings.darkLogoUrl}
+        />
+
+        <div className="header-actions">
+          <DesktopNav visibleNav={visibleNav} activeSection={activeSection} />
+
+          <HamburgerButton
+            isOpen={isNavOpen}
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          />
+        </div>
+      </header>
+
+      {/* PAGE 1 — Architectural Storytelling Cinematic Hero */}
+      <HeroCinematic
+        eyebrow={homepage.heroEyebrow}
+        titleLine1={homepage.heroTitleLine1}
+        titleLine2={homepage.heroTitleLine2}
+        description={homepage.heroDescription}
+        indexText={homepage.heroIndexText}
+        imageUrl={homepage.heroImageUrl}
+        mediaType={homepage.heroMediaType}
+        videoUrl={homepage.heroVideoUrl}
+        posterUrl={homepage.heroPosterUrl}
+        targetSectionId="#selected-work"
+        studioName={homepage.heroStudioName || settings.studioName}
+        studioSubtitle={homepage.heroStudioSubtitle}
+      />
+
+      {/* Studio Section (Top of Selected Work) */}
+      <section className="intro section-pad animated-section studio-section" id="studio">
+        <div className="section-ambient ambient-orbit" aria-hidden="true" />
+
+        <div className="intro-left-column">
+          <div className="section-kicker">
+            ( 01 ) <span>{studioInfo.kicker || 'Studio note'}</span>
+          </div>
+          {studioInfo.studioMediaType === 'video' && studioInfo.studioVideoUrl ? (
+            <StudioMediaVideo
+              videoUrl={studioInfo.studioVideoUrl}
+              posterUrl={studioInfo.studioPosterUrl || studioInfo.studioImage || undefined}
+            />
+          ) : (
+            <ParallaxImage
+              src={
+                studioInfo.studioImage ||
+                studioInfo.studioImages?.[0] ||
+                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85'
+              }
+              alt="S_Designs Studio architecture and materiality"
+              className="intro-parallax-stage"
+              enableClipReveal
+              parallaxSpeed={10}
+            />
+          )}
+        </div>
+
+        <div className="intro-copy">
+          <StaggeredHeading
+            tag="h2"
+            lines={[
+              { text: studioInfo.heading },
+              { text: studioInfo.accentHeading, isAccent: true },
+            ]}
+          />
+
+          <ScrollReveal delay={0.25}>
+            <p>{studioInfo.description || studioInfo.introText}</p>
+            <a className="text-link cursor-target" href="#contact">
+              More about the studio <ArrowUpRight size={16} />
+            </a>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* PAGE 2 — Selected Work (Cinematic Horizontal Parallax Gallery) */}
+      <WorkHorizontalShowcase
+        id="selected-work"
+        projects={showcaseProjects}
+        kicker={homepage.selectedWorkKicker}
+        heading={homepage.selectedWorkHeading}
+        slideGap={
+          settings.typography?.workSlideGap &&
+          settings.typography.workSlideGap !== 'clamp(140px, 18vw, 270px)'
+            ? settings.typography.workSlideGap
+            : undefined
+        }
+        secondaryImageSize={settings.typography?.workSecondaryImageSize}
+      />
+
+      {/* PAGE 3 — Initiate a Project */}
+      <section className="work-cta-strip" id="initiate-project">
+        <div className="cta-strip-inner">
+          <ScrollReveal className="cta-strip-copy">
+            <div className="section-kicker">{homepage.initiateKicker}</div>
+            <h2>{homepage.initiateHeading}</h2>
+            <p className="cta-strip-subtitle">{homepage.initiateSubtitle}</p>
+            <p>{homepage.initiateDescription}</p>
+          </ScrollReveal>
+          <ScrollReveal delay={0.14} className="cta-strip-actions">
+            <a href={homepage.initiateCtaHref || '#contact'} className="submit-button cursor-target" data-crosshair-target data-cursor-label="Initiate">
+              <span>{homepage.initiateCtaLabel}</span>
+              <ArrowUpRight size={18} />
+            </a>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Statement Section with Architectural Parallax & Clip Reveal */}
+      <section className="statement">
+        {homepage.approachMediaType === 'video' && homepage.approachVideoUrl ? (
+          <ApproachMediaVideo
+            videoUrl={homepage.approachVideoUrl}
+            posterUrl={homepage.approachPosterUrl}
+            altText={homepage.approachAlt}
+            fallbackImageUrl={homepage.approachImageUrl}
+          />
+        ) : (
+          <ParallaxImage
+            src={homepage.approachImageUrl}
+            alt={homepage.approachAlt || "Architectural stone structure and light aperture"}
+            className="statement-parallax-stage"
+            enableClipReveal
+            parallaxSpeed={12}
+          />
+        )}
+
+        <div className="statement-copy">
+          <div className="section-kicker">( 03 ) <span>{homepage.approachKicker}</span></div>
+
+          <StaggeredHeading
+            tag="h2"
+            lines={[
+              { text: homepage.approachHeading1 },
+              { text: homepage.approachHeading2, isAccent: true },
+            ]}
+          />
+
+          <ScrollReveal delay={0.2}>
+            <p>{homepage.approachDescription}</p>
+            <a className="text-link cursor-target" href="#contact" data-cursor-label="Contact">
+              Start a conversation <ArrowUpRight size={16} />
+            </a>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Services Section with Staggered Interactive Rows */}
+      <section className="services section-pad animated-section services-section" id="services">
+        <div className="section-ambient ambient-lines" aria-hidden="true" />
+        <div className="section-heading">
+          <div className="section-kicker">( 04 ) <span>{homepage.servicesKicker}</span></div>
+          <p className="section-note">{homepage.servicesNote}</p>
+        </div>
+
+        <ScrollReveal variant="stagger-children" stagger={0.1}>
+          <div className="service-list">
+            {services.map((service, i) => {
+              const isExpanded = expandedServiceId === service.id
+              const description = (service.shortDescription || service.fullDescription || '').trim()
+
+              return (
+                <div
+                  key={service.id}
+                  className={`service-row group cursor-target ${isExpanded ? 'is-expanded' : ''}`}
+                  data-crosshair-target
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isExpanded}
+                  aria-controls={`service-desc-${service.id}`}
+                  onClick={() => toggleService(service.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      toggleService(service.id)
+                    }
+                  }}
+                  suppressHydrationWarning
+                >
+                  <span className="service-index" aria-hidden="true">
+                    0{i + 1}
+                  </span>
+                  <div className="service-content-col">
+                    <h3 className="service-title">{service.title}</h3>
+                    {description && (
+                      <div
+                        id={`service-desc-${service.id}`}
+                        className={`service-description-collapse ${isExpanded ? 'is-expanded' : ''}`}
+                        aria-hidden={!isExpanded}
+                      >
+                        <div className="service-description-inner">
+                          <p className="service-description-text text-[#FFFFFF]">{description}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  <div className="service-toggle-col" aria-hidden="true">
+                    <ChevronDown
+                      size={20}
+                      className={`service-toggle-icon ${isExpanded ? 'is-expanded' : ''}`}
+                    />
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Reviews Section */}
+      <CinematicReviews
+        id="reviews"
+        reviews={mappedReviews}
+        kicker={
+          homepage.reviewsKicker && homepage.reviewsKicker.toLowerCase() === 'client reviews'
+            ? 'Client Reviews'
+            : (homepage.reviewsKicker || 'Client Reviews')
+        }
+        heading1={
+          homepage.reviewsHeading1?.trim().toLowerCase() === 'quiet'
+            ? ''
+            : (homepage.reviewsHeading1 || '')
+        }
+        heading2={
+          homepage.reviewsHeading2?.trim().toLowerCase().replace('.', '') === 'appreciation'
+            ? ''
+            : (homepage.reviewsHeading2 || '')
+        }
+      />
+
+      {/* Founder / About Section */}
+      <FounderSection
+        founder={founder}
+        studioInfo={studioInfo}
+        approachDescription={homepage.approachDescription}
+      />
+
+      {/* Contact Section */}
+      <section className="contact section-pad" id="contact">
+        <div className="section-kicker">( 06 ) <span>{homepage.contactKicker}</span></div>
+        <div className="contact-layout">
+          <div>
+            <StaggeredHeading
+              tag="h2"
+              lines={[
+                { text: homepage.contactHeading1 },
+                { text: homepage.contactHeading2, isAccent: true },
+              ]}
+            />
+            <ScrollReveal delay={0.2}>
+              <p>{homepage.contactDescription}</p>
+              <div className="contact-details">
+                <span>{settings.email}</span>
+                <span>{settings.officeAddress}</span>
+              </div>
+            </ScrollReveal>
+          </div>
+
+          <ScrollReveal delay={0.3} variant="fade-up">
+            {submitted ? (
+              <div className="enquiry-success-card" suppressHydrationWarning>
+                <div className="enquiry-success-icon" aria-hidden="true">✓</div>
+                <h3 className="enquiry-success-title">Inquiry Received</h3>
+                <p className="enquiry-success-text">
+                  Thank you for reaching out to {settings.studioName}. We have received your project brief and will be in touch with you shortly.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(false)
+                    setEnquiryForm({
+                      name: '',
+                      email: '',
+                      phone: '',
+                      location: '',
+                      projectType: '',
+                      message: '',
+                    })
+                  }}
+                  className="enquiry-reset-btn cursor-target"
+                >
+                  Send another inquiry
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleEnquirySubmit} suppressHydrationWarning className="enquiry-form">
+                <div className="enquiry-grid-2">
+                  <label>
+                    Full Name *
+                    <input
+                      required
+                      name="name"
+                      value={enquiryForm.name}
+                      onChange={(e) => setEnquiryForm((prev) => ({ ...prev, name: e.target.value }))}
+                      placeholder="Your name"
+                      suppressHydrationWarning
+                    />
+                  </label>
+                  <label>
+                    Email Address *
+                    <input
+                      required
+                      type="email"
+                      name="email"
+                      value={enquiryForm.email}
+                      onChange={(e) => setEnquiryForm((prev) => ({ ...prev, email: e.target.value }))}
+                      placeholder="you@email.com"
+                      suppressHydrationWarning
+                    />
+                  </label>
+                </div>
+
+                <div className="enquiry-grid-2">
+                  <label>
+                    Phone Number
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={enquiryForm.phone}
+                      onChange={(e) => setEnquiryForm((prev) => ({ ...prev, phone: e.target.value }))}
+                      placeholder="+351 912 345 678"
+                      suppressHydrationWarning
+                    />
+                  </label>
+                  <label>
+                    Project Location / City
+                    <input
+                      name="location"
+                      value={enquiryForm.location}
+                      onChange={(e) => setEnquiryForm((prev) => ({ ...prev, location: e.target.value }))}
+                      placeholder="e.g. Lisbon, Cascais, London"
+                      suppressHydrationWarning
+                    />
+                  </label>
+                </div>
+
+                <label>
+                  Project Type
+                  <select
+                    name="projectType"
+                    value={enquiryForm.projectType}
+                    onChange={(e) => setEnquiryForm((prev) => ({ ...prev, projectType: e.target.value }))}
+                    className="enquiry-select"
+                    suppressHydrationWarning
+                  >
+                    <option value="">Select project type...</option>
+                    <option value="Residential Architecture">Residential Architecture</option>
+                    <option value="Commercial & Workspace">Commercial &amp; Workspace</option>
+                    <option value="Interior Architecture & Design">Interior Architecture &amp; Design</option>
+                    <option value="Renovation & Historic Restoration">Renovation &amp; Historic Restoration</option>
+                    <option value="Landscape & Spatial Design">Landscape &amp; Spatial Design</option>
+                    <option value="Other / Bespoke Inquiries">Other / Bespoke Inquiries</option>
+                  </select>
+                </label>
+
+                <label>
+                  Tell us about your project *
+                  <textarea
+                    required
+                    name="message"
+                    rows={4}
+                    value={enquiryForm.message}
+                    onChange={(e) => setEnquiryForm((prev) => ({ ...prev, message: e.target.value }))}
+                    placeholder="Brief description of the site, timeline, architectural goals, or spatial vision..."
+                    suppressHydrationWarning
+                  />
+                </label>
+
+                {submitError && (
+                  <div className="enquiry-error-banner" role="alert">
+                    {submitError}
+                  </div>
+                )}
+
+                <button
+                  className="submit-button cursor-target"
+                  data-crosshair-target
+                  data-cursor-label="Submit"
+                  type="submit"
+                  disabled={submitting}
+                  suppressHydrationWarning
+                >
+                  {submitting ? 'Sending inquiry...' : 'Send inquiry'} <ArrowUpRight size={17} />
+                </button>
+              </form>
+            )}
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Site Footer */}
+      <footer className="site-footer">
+        <BrandLogo
+          href="#top"
+          size="sm"
+          studioName={settings.studioName}
+          studioSubtitle={settings.studioSubtitle}
+          lightLogoUrl={settings.lightLogoUrl}
+          darkLogoUrl={settings.darkLogoUrl}
+        />
+        <div className="footer-links">
+          {(visibleNav || []).map((item) => {
+            const href = item.href.startsWith('/#') ? item.href.slice(1) : item.href
+            return (
+              <a key={item.id} href={href} className="cursor-target">
+                {item.label}
+              </a>
+            )
+          })}
+        </div>
+        <div className="socials">
+          <a
+            href={settings.instagramUrl || '#top'}
+            target={settings.instagramUrl ? '_blank' : undefined}
+            rel={settings.instagramUrl ? 'noopener noreferrer' : undefined}
+            aria-label="Instagram"
+            className="cursor-target"
+          >
+            Instagram
+          </a>
+          <a
+            href={settings.linkedinUrl || '#top'}
+            target={settings.linkedinUrl ? '_blank' : undefined}
+            rel={settings.linkedinUrl ? 'noopener noreferrer' : undefined}
+            aria-label="LinkedIn"
+            className="cursor-target"
+          >
+            LinkedIn
+          </a>
+          <span>{settings.footerCopyright}</span>
+        </div>
+      </footer>
+    </main>
+  )
+}
+

@@ -1,0 +1,478 @@
+import { projects as staticProjects } from '@/lib/projects'
+import type {
+  CmsFounderInfo,
+  CmsHomepageContent,
+  CmsNavItem,
+  CmsProject,
+  CmsSeoSetting,
+  CmsService,
+  CmsStudioInfo,
+  CmsTestimonial,
+  CmsWebsiteSettings,
+  ContactBotSettings,
+  PublicSiteData,
+} from './types'
+
+export const DEFAULT_PROJECTS: CmsProject[] = staticProjects.map((p, idx) => ({
+  id: `default-${p.slug}`,
+  slug: p.slug,
+  title: p.title,
+  meta: p.meta,
+  location: p.location,
+  year: p.year,
+  type: p.type,
+  category: p.category,
+  area: p.area,
+  size: p.size,
+  shortDescription: p.description,
+  fullDescription:
+    'Every detail was developed through physical mockups and light studies on site, ensuring a seamless dialogue between built geometry and the surrounding landscape.',
+  mainImage: p.image,
+  mainImageAlt: `${p.title} — ${p.location}`,
+  thumbnailImage: p.image,
+  details: p.details,
+  featuresSectionNumber: '( 01 )',
+  featuresSectionHeading: 'Project Features',
+  featuresHeading: 'Designed for',
+  featuresAccentHeading: 'quiet living.',
+  featuresDescription: '',
+  featuresSupportingText:
+    'Every detail was developed through physical mockups and light studies on site, ensuring a seamless dialogue between built geometry and the surrounding landscape.',
+  galleryImages: p.gallery.map((url, gIdx) => ({
+    id: `default-${p.slug}-img-${gIdx}`,
+    projectId: `default-${p.slug}`,
+    url,
+    altText: `${p.title} plate ${gIdx + 1}`,
+    displayOrder: gIdx,
+  })),
+  displayOrder: idx,
+  status: 'published',
+  featured: true,
+  seoTitle: `${p.title} — S_Designs Architecture`,
+  seoDescription: p.description,
+  updatedAt: '2026-01-01T00:00:00.000Z',
+}))
+
+export const DEFAULT_SERVICES: CmsService[] = [
+  {
+    id: 'default-service-1',
+    title: 'Residential architecture',
+    slug: 'residential-architecture',
+    shortDescription: 'Private residences shaped around light, landscape, and quiet daily rituals.',
+    fullDescription: 'Full-scope architectural design from early site feasibility through bespoke construction detailing.',
+    imageUrl: '',
+    iconName: 'home',
+    displayOrder: 0,
+    status: 'published',
+    seoTitle: '',
+    seoDescription: '',
+  },
+  {
+    id: 'default-service-2',
+    title: 'Interior environments',
+    slug: 'interior-environments',
+    shortDescription: 'Calm, tactile interiors crafted from natural stone, timber, and custom joinery.',
+    fullDescription: 'Complete spatial curation, custom millwork, lighting design, and material specification.',
+    imageUrl: '',
+    iconName: 'layers',
+    displayOrder: 1,
+    status: 'published',
+    seoTitle: '',
+    seoDescription: '',
+  },
+  {
+    id: 'default-service-3',
+    title: 'Renovation & adaptive reuse',
+    slug: 'renovation-adaptive-reuse',
+    shortDescription: 'Thoughtful transformation of historic structures into contemporary spaces.',
+    fullDescription: 'Sensitive structural interventions preserving heritage character while introducing modern comfort.',
+    imageUrl: '',
+    iconName: 'compass',
+    displayOrder: 2,
+    status: 'published',
+    seoTitle: '',
+    seoDescription: '',
+  },
+  {
+    id: 'default-service-4',
+    title: 'Visualization & consultation',
+    slug: 'visualization-consultation',
+    shortDescription: 'Physical models, daylight studies, and early architectural advisory.',
+    fullDescription: 'Site evaluation, spatial massing studies, and atmospheric architectural visualization.',
+    imageUrl: '',
+    iconName: 'eye',
+    displayOrder: 3,
+    status: 'published',
+    seoTitle: '',
+    seoDescription: '',
+  },
+]
+
+export const DEFAULT_FOUNDER_INFO: CmsFounderInfo = {
+  visible: true,
+  displayOrder: 6,
+  kicker: '( 06 )',
+  label: 'THE FOUNDER',
+  heading: 'Behind the Vision',
+  founderName: 'Henrique Almeida',
+  founderRole: 'Principal Architect & Founder',
+  founderPhoto:
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85',
+  founderBio:
+    'Leading S_DE_SIGN with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context. Every project is conceived as an enduring sanctuary—crafted slowly, deliberately, and in harmony with the landscape.',
+  philosophy:
+    'Architecture is not merely about form or enclosure; it is the quiet art of making room for life, shaped by light and tactile honesty.',
+  quote:
+    'Architecture is not merely about form or enclosure; it is the quiet art of making room for life, shaped by light and tactile honesty.',
+  stats: [
+    { value: '10+', label: 'Years Experience', detail: '' },
+    { value: '500+', label: 'Projects Realized', detail: '' },
+    { value: '99K', label: 'SQ Meters Realized', detail: '' },
+  ],
+  showStats: true,
+  buttonText: 'Our Philosophy',
+  buttonHref: '#studio',
+  showButton: false,
+  illustrationUrl: '',
+  showIllustration: false,
+}
+
+export const DEFAULT_STUDIO_INFO: CmsStudioInfo = {
+  kicker: 'Studio note',
+  heading: 'Architecture is the art of',
+  accentHeading: 'making room for life.',
+  introText:
+    'S_Designs is a small, independent practice working across architecture, interiors and objects.',
+  description:
+    'S_Designs is a small, independent practice working across architecture, interiors and objects. We believe the most lasting spaces begin with careful attention — to how light moves, how materials age, and how people belong.',
+  philosophy:
+    'We work slowly and collaboratively, building a clear idea before adding anything else. The result is architecture that feels inevitable — generous, tactile and made to last.',
+  vision: 'To shape quiet, enduring architecture grounded in local craft, natural light, and timeless materiality.',
+  mission: 'Designing deeply considered residential, cultural, and hospitality environments across Portugal and worldwide.',
+  history: 'Founded in Lisbon as an independent architectural and spatial studio.',
+  studioImages: [
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
+  ],
+  studioImage:
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
+  teamMembers: [
+    {
+      id: 'founder-primary',
+      name: 'Henrique Almeida',
+      role: 'Principal Architect & Founder',
+      bio: 'Leading S_DE_SIGN with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context.',
+      photoUrl:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85',
+    },
+  ],
+  extraSections: [],
+  founder: DEFAULT_FOUNDER_INFO,
+}
+
+export const DEFAULT_TESTIMONIALS: CmsTestimonial[] = [
+  {
+    id: 'almeida',
+    clientName: 'Henrique & Sofia Almeida',
+    projectName: 'Casa Loma Residence',
+    projectDescription:
+      'A serene hillside courtyard home shaped in limewashed plaster, oak, and filtered daylight.',
+    designation: 'Private Homeowners',
+    headline: 'A home shaped by stillness and warm light.',
+    quote:
+      'A home shaped by stillness and warm light — every space feels naturally balanced, tactile, and deeply personal.',
+    clientPhoto: '',
+    videoUrl: '/uploads/1794572484006-an78r-demon-mask-samurai-live-wallpaper.mp4',
+    posterImage:
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85',
+    backgroundImage:
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    rating: 5,
+    projectId: 'casa-loma',
+    featured: true,
+    displayOrder: 0,
+    status: 'published',
+  },
+  {
+    id: 'takahashi',
+    clientName: 'Kenji Takahashi',
+    projectName: 'Atelier Marais',
+    projectDescription:
+      'An intimate timber-and-stone gallery residence balancing quiet proportion with natural shadow.',
+    designation: 'Commission Patron',
+    headline: 'Material restraint that surprises every morning.',
+    quote:
+      'Material restraint that surprises every morning. Every volume, proportion, and shadow feels deliberate and deeply considered.',
+    clientPhoto: '',
+    videoUrl: '/uploads/1794576013976-acldi-150784-799174132_medium.mp4',
+    posterImage:
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85',
+    backgroundImage:
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=85',
+    rating: 5,
+    projectId: 'atelier-marais',
+    featured: true,
+    displayOrder: 1,
+    status: 'published',
+  },
+  {
+    id: 'meier-keller',
+    clientName: 'Elena Meier-Keller',
+    projectName: 'The Mineral House',
+    projectDescription:
+      'A monolithic travertine sanctuary designed around framed landscape views and tactile stillness.',
+    designation: 'Foundation Director',
+    headline: 'Clarity and precision from first sketch to handoff.',
+    quote:
+      'Clarity and precision from first sketch to handoff. The dialogue between travertine mass and framed nature exceeded all expectations.',
+    clientPhoto: '',
+    videoUrl: '/uploads/1794576013976-acldi-150784-799174132_medium.mp4',
+    posterImage:
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85',
+    backgroundImage:
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85',
+    rating: 5,
+    projectId: 'the-mineral-house',
+    featured: false,
+    displayOrder: 2,
+    status: 'published',
+  },
+]
+
+export const DEFAULT_CONTACT_BOT_SETTINGS: ContactBotSettings = {
+  instagram: {
+    enabled: true,
+    url: 'https://www.instagram.com/sdesigns.studio',
+  },
+  whatsapp: {
+    enabled: true,
+    value: '',
+  },
+  email: {
+    enabled: true,
+    value: 'adithiruthiparambil12@gmail.com',
+  },
+  facebook: {
+    enabled: true,
+    url: '',
+  },
+  linkedin: {
+    enabled: true,
+    url: '',
+  },
+}
+
+export const DEFAULT_SETTINGS: CmsWebsiteSettings = {
+  studioName: 'S_DE_SIGN',
+  studioSubtitle: 'ARCHITECTURE / STUDIO',
+  tagline: 'Architecture / Objects',
+  mainLogoUrl: '/s-design-emblem-white.png',
+  altLogoUrl: '/s-design-emblem-clean.png',
+  lightLogoUrl: '/s-design-emblem-clean.png',
+  darkLogoUrl: '/s-design-emblem-white.png',
+  faviconUrl: '/s-design-logo.jpg',
+  footerLogoUrl: '/s-design-emblem-white.png',
+  brandColors: {
+    ivory: '#121110',
+    paper: '#181614',
+    ink: '#f4efe6',
+    bronze: '#d9b686',
+    bronzeLight: '#f1cf9e',
+  },
+  typography: {
+    display: "Georgia, 'Times New Roman', serif",
+    body: 'Arial, Helvetica, sans-serif',
+    heroTitleSize: 'clamp(62px, 9.5vw, 145px)',
+    heroSubtitleSize: '14px',
+    studioHeadingSize: 'clamp(42px, 5.3vw, 78px)',
+    studioSubheadingSize: 'clamp(42px, 5.3vw, 78px)',
+    studioBodySize: '14px',
+    workTitleSize: 'clamp(25px, 2.4vw, 36px)',
+    workDescSize: 'clamp(13px, 1.05vw, 15px)',
+    workDescGap: 'clamp(32px, 4vw, 56px)',
+    workSlideGap: 'clamp(140px, 18vw, 270px)',
+    workImageScale: '1',
+    workSecondaryImageSize: 'clamp(185px, 17.5vw, 340px)',
+    approachHeadingSize: 'clamp(54px, 6.2vw, 96px)',
+    approachBodySize: '14px',
+    servicesTitleSize: 'clamp(25px, 3.3vw, 46px)',
+    reviewsHeadingSize: 'clamp(24px, 2.75vw, 41px)',
+    reviewsClientHeadingSize: '',
+    reviewsDescSize: '14.5px',
+    reviewsCenterCardScale: '1',
+    founderHeadingSize: 'clamp(32px, 3.2vw, 56px)',
+    founderAboutSize: 'clamp(14.5px, 1.05vw, 16px)',
+    founderAboutWeight: '400',
+    founderAboutLineHeight: '1.75',
+    founderAboutLetterSpacing: '0px',
+    founderQuoteSize: 'clamp(14px, 1vw, 15.5px)',
+    founderStat1NumberSize: 'clamp(24px, 2.2vw, 36px)',
+    founderStat1NumberWeight: '700',
+    founderStat1NumberLineHeight: '1',
+    founderStat1LabelSize: 'clamp(9px, 0.72vw, 10.5px)',
+    founderStat1LabelWeight: '500',
+    founderStat1LabelLineHeight: '1.35',
+    founderStat2NumberSize: 'clamp(24px, 2.2vw, 36px)',
+    founderStat2NumberWeight: '700',
+    founderStat2NumberLineHeight: '1',
+    founderStat2LabelSize: 'clamp(9px, 0.72vw, 10.5px)',
+    founderStat2LabelWeight: '500',
+    founderStat2LabelLineHeight: '1.35',
+    founderStat3NumberSize: 'clamp(24px, 2.2vw, 36px)',
+    founderStat3NumberWeight: '700',
+    founderStat3NumberLineHeight: '1',
+    founderStat3LabelSize: 'clamp(9px, 0.72vw, 10.5px)',
+    founderStat3LabelWeight: '500',
+    founderStat3LabelLineHeight: '1.35',
+    contactHeadingSize: 'clamp(62px, 8vw, 118px)',
+    contactBodySize: '14px',
+    kickerSize: '10px',
+  },
+  email: 'adithiruthiparambil12@gmail.com',
+  phone: '',
+  whatsapp: '',
+  officeAddress: 'Lisbon · Portugal',
+  mapsUrl: '',
+  businessHours: 'Mon – Fri · 09:00 – 18:00 WET',
+  instagramUrl: '#top',
+  facebookUrl: '',
+  pinterestUrl: '',
+  linkedinUrl: '#top',
+  otherSocials: [],
+  footerCopyright: '© 2024 S_Designs',
+  contactBot: DEFAULT_CONTACT_BOT_SETTINGS,
+}
+
+export const DEFAULT_HOMEPAGE: CmsHomepageContent = {
+  heroEyebrow: 'Independent architecture studio · Portugal / Worldwide',
+  heroTitleLine1: 'Spaces with',
+  heroTitleLine2: 'quiet presence.',
+  heroDescription:
+    'We shape considered places for living, working and gathering — grounded in material, light and context.',
+  heroImageUrl:
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=90',
+  heroIndexText: '01 / 04',
+  heroStudioName: 'S_DE_SIGN',
+  heroStudioSubtitle: 'ARCHITECTURE & SPATIAL PRACTICE',
+  selectedWorkKicker: 'SELECTED WORKS ARCHIVE',
+  selectedWorkHeading: '2021 — 2024',
+  approachKicker: 'Our approach',
+  approachHeading1: 'Less, but',
+  approachHeading2: 'better.',
+  approachDescription:
+    'We work slowly and collaboratively, building a clear idea before adding anything else. The result is architecture that feels inevitable — generous, tactile and made to last.',
+  approachImageUrl:
+    'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85',
+  approachMediaType: 'image',
+  approachVideoUrl: '',
+  approachPosterUrl: '',
+  approachPublicId: '',
+  approachAlt: 'Architectural stone structure and light aperture',
+  approachMedia: {
+    type: 'image',
+    url: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=85',
+    publicId: '',
+    posterUrl: '',
+    alt: 'Architectural stone structure and light aperture',
+  },
+  initiateKicker: '( INITIATE A PROJECT )',
+  initiateHeading: 'INITIATE A PROJECT',
+  initiateSubtitle: 'Have a site or idea in mind?',
+  initiateDescription:
+    'We work with discerning clients globally on new builds, renovations, and interior architecture.',
+  initiateCtaLabel: 'Begin a conversation',
+  initiateCtaHref: '#contact',
+  servicesKicker: 'What we do',
+  servicesNote: 'From first sketch to final detail.',
+  reviewsKicker: 'Client Reviews',
+  reviewsHeading1: '',
+  reviewsHeading2: '',
+  contactKicker: 'Begin a project',
+  contactHeading1: 'Have a place',
+  contactHeading2: 'in mind?',
+  contactDescription:
+    'Tell us a little about what you are imagining. We will get back to you within three working days.',
+}
+
+export const DEFAULT_NAVIGATION: CmsNavItem[] = [
+  {
+    id: 'nav-work',
+    label: 'Work',
+    href: '/#selected-work',
+    subtitle: 'Selected Architectural Commissions',
+    previewImage:
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
+    displayOrder: 0,
+    visible: true,
+    isCta: false,
+  },
+  {
+    id: 'nav-studio',
+    label: 'Studio',
+    href: '/#studio',
+    subtitle: 'Philosophy, Materiality & Craft',
+    previewImage:
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+    displayOrder: 1,
+    visible: true,
+    isCta: false,
+  },
+  {
+    id: 'nav-services',
+    label: 'Services',
+    href: '/#services',
+    subtitle: 'Architecture, Interiors & Objects',
+    previewImage:
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    displayOrder: 2,
+    visible: true,
+    isCta: false,
+  },
+  {
+    id: 'nav-founder',
+    label: 'About',
+    href: '/#founder',
+    subtitle: 'The Founder & Philosophy',
+    previewImage:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85',
+    displayOrder: 3,
+    visible: true,
+    isCta: false,
+  },
+  {
+    id: 'nav-contact',
+    label: 'Contact',
+    href: '/#contact',
+    subtitle: 'Initiate a Conversation',
+    previewImage:
+      'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80',
+    displayOrder: 4,
+    visible: true,
+    isCta: false,
+  },
+]
+
+export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
+  home: {
+    pageKey: 'home',
+    seoTitle: 'S_Designs — Architecture / Objects',
+    metaDescription:
+      'S_Designs is an independent architecture studio creating quiet, considered spaces for living, working and gathering.',
+    ogImage: '/s-design-logo.jpg',
+    ogTitle: 'S_Designs — Architecture / Objects',
+    ogDescription: 'Independent architecture studio · Portugal / Worldwide',
+    canonicalUrl: '',
+  },
+}
+
+export const DEFAULT_PUBLIC_SITE_DATA: PublicSiteData = {
+  projects: DEFAULT_PROJECTS,
+  services: DEFAULT_SERVICES,
+  studioInfo: DEFAULT_STUDIO_INFO,
+  founder: DEFAULT_FOUNDER_INFO,
+  testimonials: DEFAULT_TESTIMONIALS,
+  settings: DEFAULT_SETTINGS,
+  homepage: DEFAULT_HOMEPAGE,
+  navigation: DEFAULT_NAVIGATION,
+  seo: DEFAULT_SEO,
+}
+
