@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import {
   Plus,
   Pencil,
@@ -21,7 +21,6 @@ import type { CmsProject, CmsProjectGalleryItem, CmsMediaAsset } from '@/lib/cms
 import { ImageField } from './media-picker-modal'
 import { MediaField } from './media-field'
 import { getCloudinaryVideoThumbnail } from '@/lib/storage/video-thumbnails'
-import { likeButtonSVG } from '@/components/like/like-button'
 
 interface ProjectsManagerProps {
   projects: CmsProject[]
@@ -82,46 +81,6 @@ export function ProjectsManager({
   const [saving, setSaving] = useState(false)
   const [deleteTarget, setDeleteTarget] = useState<CmsProject | null>(null)
   const [detailsText, setDetailsText] = useState('')
-
-  // Like counts state
-  const [likeCounts, setLikeCounts] = useState<Record<string, number>>({})
-  const [isLoadingLikes, setIsLoadingLikes] = useState(false)
-
-  useEffect(() => {
-    async function fetchLikeCounts() {
-      if (projects.length === 0) {
-        setLikeCounts({})
-        setIsLoadingLikes(false)
-        return
-      }
-      setIsLoadingLikes(true)
-      const counts: Record<string, number> = {}
-      try {
-        // Fetch like counts for each project slug
-        const uniqueSlugs = [...new Set(projects.map((p) => p.slug).filter(Boolean))]
-        for (const slug of uniqueSlugs) {
-          try {
-            const res = await fetch(`/api/projects/${slug}/likes`, {
-              cache: 'no-store',
-            })
-            const data = await res.json()
-            if (res.ok) {
-              counts[slug] = data.count || 0
-            }
-          } catch (err) {
-            console.warn(`[ProjectsManager] Failed to fetch like count for ${slug}`, err)
-            counts[slug] = 0
-          }
-        }
-        setLikeCounts(counts)
-      } catch (err) {
-        console.error('[ProjectsManager] Error fetching like counts:', err)
-      } finally {
-        setIsLoadingLikes(false)
-      }
-    }
-    fetchLikeCounts()
-  }, [projects])
 
   function openEditor(project: CmsProject) {
     setEditing({
@@ -895,9 +854,7 @@ export function ProjectsManager({
                 <th className="py-3 px-4">Order</th>
                 <th className="py-3 px-4">Project</th>
                 <th className="py-3 px-4">Category / Location</th>
-                <th className="py-3 px-4">Likes</th>
                 <th className="py-3 px-4">Status</th>
-                <th className="py-3 px-4">Likes</th>
                 <th className="py-3 px-4">Featured</th>
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
@@ -956,9 +913,6 @@ export function ProjectsManager({
                   <td className="py-3 px-4 text-xs text-[#595248]">
                     <p>{p.category}</p>
                     <p className="text-[#8b8174]">{p.location}</p>
-                  </td>
-                  <td className="py-3 px-4 text-right">
-                    <p className="text-xs font-medium text-[#6b6358]">{likeCounts[p.slug] || 0}</p>
                   </td>
                   <td className="py-3 px-4">
                     <button

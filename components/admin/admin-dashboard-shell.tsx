@@ -99,7 +99,6 @@ interface AdminDashboardShellProps {
     seo: CmsSeoSetting[]
     activity: CmsActivityLog[]
     inquiries?: CmsEnquiry[]
-    likeCounts: Record<string, number>
   }
 }
 
@@ -131,8 +130,6 @@ export function AdminDashboardShell({ actor, initialData }: AdminDashboardShellP
 
   const [inquiries, setInquiries] = useState<CmsEnquiry[]>(initialData.inquiries || [])
   const newInquiriesCount = inquiries.filter((i) => i.status === 'new').length
-
-  const [likeCounts, setLikeCounts] = useState<Record<string, number>>(initialData.likeCounts || {})
 
   const [projects, setProjects] = useState<CmsProject[]>(initialData.projects)
   const [services, setServices] = useState<CmsService[]>(initialData.services)
@@ -344,13 +341,6 @@ export function AdminDashboardShell({ actor, initialData }: AdminDashboardShellP
                   <p className="text-xs uppercase tracking-wider text-[#7c7367]">Client Leads</p>
                   <p className="admin-serif text-4xl text-[#1c1a17] mt-2">{inquiries.length}</p>
                   <p className="text-xs text-[#8f6a37] mt-1">{newInquiriesCount} new / unread</p>
-                </div>
-                <div className="admin-card p-5">
-                  <p className="text-xs uppercase tracking-wider text-[#7c7367]">Total Likes</p>
-                  <p className="admin-serif text-4xl text-[#b68d54] mt-2">
-                    {(Object.values(likeCounts || {}).reduce((a, b) => a + b, 0) || 0)}
-                  </p>
-                  <p className="text-xs text-[#7c7367] mt-1">Across all projects</p>
                 </div>
                 <div className="admin-card p-5">
                   <p className="text-xs uppercase tracking-wider text-[#7c7367]">Media Assets</p>
