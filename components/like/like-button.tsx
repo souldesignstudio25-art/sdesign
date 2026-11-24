@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 // - Disables on click to prevent double-taps
 // --------------------------------------------------------
 
-type LikeButtonProps {
+type LikeButtonProps = {
   projectSlug: string
   initialCount?: number
   /** Optional custom className for styling variations */
@@ -28,7 +28,7 @@ export function LikeButton({
   className,
 }: LikeButtonProps) {
   const [isLiked, setIsLiked] = useState(false)
-  [likeCount, setLikeCount] = useState(initialCount)
+  const [likeCount, setLikeCount] = useState(initialCount)
   const [isProcessing, setIsProcessing] = useState(false)
   const router = useRouter()
 
@@ -55,7 +55,6 @@ export function LikeButton({
   const handleLike = useCallback(async (e: React.MouseEvent) => {
     if (isProcessing) return
     e.stopPropagation()
-    setIsProcessing(true)
     setIsLiked(!isLiked) // Optimistic UI: toggle immediately
 
     try {
