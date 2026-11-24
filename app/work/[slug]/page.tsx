@@ -13,6 +13,7 @@ import { ScrollReveal } from '@/components/motion/scroll-reveal'
 import { ProjectNavigationFeedbackGuard } from '@/components/project-navigation-feedback-guard'
 import { getPublishedProjectBySlug, getPublicSiteData } from '@/lib/cms/queries'
 import { isVideoSource, getCloudinaryVideoThumbnail } from '@/lib/storage/video-thumbnails'
+import { LikeButton } from '@/components/like/like-button'
 
 export const dynamic = 'force-dynamic'
 
@@ -300,6 +301,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             dangerouslySetInnerHTML={{ __html: projectJsonString }}
           />
           <p className="detail-hero-meta">{project.meta}</p>
+          <div className="detail-hero-like-wrapper">
+            <LikeButton projectSlug={project.slug} />
+          </div>
           <p className="detail-hero-desc">{project.shortDescription || project.fullDescription}</p>
           <div className="detail-hero-actions">
             <div className="detail-hero-scroll">

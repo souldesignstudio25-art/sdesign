@@ -9,6 +9,7 @@ import {
   DEFAULT_STUDIO_INFO,
   DEFAULT_TESTIMONIALS,
 } from '@/lib/cms/defaults'
+import { seedProjectLikeCounts } from '@/lib/mongodb/likes'
 
 declare global {
   // eslint-disable-next-line no-var
@@ -66,6 +67,9 @@ async function ensureIndexesAndSeed(db: Db): Promise<void> {
         db.collection('media').createIndex({ publicId: 1 }, { unique: true }),
         db.collection('activityLogs').createIndex({ createdAt: -1 }),
         db.collection('projectReviews').createIndex({ projectId: 1 }),
+        // Like system indexes
+        db.collection('likes').createIndex({ projectSlug: 1, visitorId: 1 }, { unique: true }),
+        db.collection('likes').createIndex({ createdAt: -1 }),
         db.collection('projectReviews').createIndex({ visitorId: 1, projectId: 1 }),
         db.collection('projectReviews').createIndex({ createdAt: -1 }),
       ])
@@ -151,6 +155,8 @@ async function ensureIndexesAndSeed(db: Db): Promise<void> {
           updatedAt: now,
         })
       }
+
+      await seedProjectLikeCounts(db)
 
       const navCount = await db.collection('navigation').countDocuments()
       if (navCount === 0) {
