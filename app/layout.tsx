@@ -65,6 +65,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   })
 
   const bodyStyle: Record<string, string> = {}
+  const studioHeading = typography?.studioHeadingSize || (data.studioInfo as unknown as Record<string, string>)?.studioHeadingSize
   if (brandColors?.ivory) bodyStyle['--ivory'] = brandColors.ivory
   if (brandColors?.paper) bodyStyle['--paper'] = brandColors.paper
   if (brandColors?.ink) bodyStyle['--ink'] = brandColors.ink
