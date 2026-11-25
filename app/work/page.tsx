@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const studioName = siteData.settings.studioName || 'S_DE_SIGN'
   const title = `Architecture Portfolio & Selected Works — ${studioName}`
   const description =
-    'Explore selected architectural case studies by S_DE_SIGN: modern luxury villas, contemporary private residences, cultural retreats, and tactile interior architecture in Chennai, Lisbon, and worldwide.'
+    'Explore selected architectural case studies by S_DE_SIGN: modern luxury villas, contemporary private residences, cultural retreats, and tactile interior architecture in Kerala, India, and worldwide.'
   const canonicalUrl = 'https://sdesign.co.in/work'
   const ogImage = siteData.settings.mainLogoUrl || '/s-design-logo.jpg'
 

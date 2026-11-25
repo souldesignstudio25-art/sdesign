@@ -139,7 +139,7 @@ export async function PATCH(request: Request) {
     email: String(body.email ?? 'adithiruthiparambil12@gmail.com'),
     phone: String(body.phone ?? ''),
     whatsapp: String(body.whatsapp ?? ''),
-    officeAddress: String(body.officeAddress ?? 'Lisbon · Portugal'),
+    officeAddress: String(body.officeAddress ?? 'Kerala · India'),
     mapsUrl: String(body.mapsUrl ?? ''),
     businessHours: String(body.businessHours ?? ''),
     instagramUrl: String(body.instagramUrl ?? ''),

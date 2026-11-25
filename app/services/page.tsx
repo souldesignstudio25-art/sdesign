@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const studioName = siteData.settings.studioName || 'S_DE_SIGN'
   const title = `Architectural Services — Residential, Interior & Exterior Practice | ${studioName}`
   const description =
-    'Comprehensive architectural services by S_DE_SIGN: modern residential architecture, luxury villa design, interior environments, exterior facades, and landscape integration in Chennai, Lisbon, and worldwide.'
+    'Comprehensive architectural services by S_DE_SIGN: modern residential architecture, luxury villa design, interior environments, exterior facades, and landscape integration in Kerala, India, and worldwide.'
   const canonicalUrl = 'https://sdesign.co.in/services'
   const ogImage = siteData.settings.mainLogoUrl || '/s-design-logo.jpg'
 
@@ -131,7 +131,7 @@ export default async function ServicesIndexPage() {
         <p className="lead-paragraph text-lg sm:text-xl text-[#a8a195] font-light max-w-3xl mt-8 leading-relaxed">
           From early site feasibility and daylight choreography to bespoke construction detailing,
           S_DE_SIGN provides comprehensive architectural services tailored for discerning clients
-          in Chennai, Lisbon, and worldwide.
+          in Kerala, India, and worldwide.
         </p>
 
         <div className="hero-cta-bar flex flex-wrap gap-4 items-center mt-10">

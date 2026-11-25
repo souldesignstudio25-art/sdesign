@@ -1,5 +1,5 @@
-# S_DE_SIGN — Architecture Studio & Spatial Practice
-> Independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design.
+# Sdesign — Architecture & 3D Visualization Studio
+> Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.
 
 ## Core Services & Disciplines
 - https://sdesign.co.in/: Home – studio philosophy, approach, and project showcase.
@@ -13,8 +13,8 @@
 - https://sdesign.co.in/services/renovation-adaptive-reuse: Architectural renovation, historic restoration & adaptive reuse.
 
 ## Locations & Service Areas
-- Chennai, India (Primary Regional Studio & Area Served)
-- Lisbon, Portugal & Worldwide (International Spatial Practice)
+- Kerala, India (Primary Studio Location & Regional Practice)
+- Worldwide (3D Architectural Visualization, Virtual Design & Consultations)
 
 ## Contact
 - Email: adithiruthiparambil12@gmail.com

@@ -233,7 +233,7 @@ export function FullNavOverlay({
           <div className="footer-meta-col">
             <span className="meta-label">STUDIO LOCATION</span>
             <span className="meta-value">
-              {settings?.officeAddress || 'Lisbon, Portugal — Worldwide'}
+              {settings?.officeAddress || 'Kerala · India'}
             </span>
           </div>
           <div className="footer-meta-col">

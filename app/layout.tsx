@@ -11,12 +11,12 @@ import './globals.css'
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPublicSiteData()
-  const homeSeo = data.seo.home
+  const homeSeo = data.seo?.home
   const title =
-    homeSeo?.seoTitle || 'Sdesign | Architecture, Exteriors, Interiors & 3D Visualization Studio'
+    homeSeo?.seoTitle || 'Sdesign | Architecture, Exteriors, Interiors, Firms & Studio'
   const description =
     homeSeo?.metaDescription ||
-    'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.'
+    'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.'
   const ogImage = homeSeo?.ogImage || '/icon.png'
 
   return {
@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: homeSeo?.ogTitle || title,
       description: homeSeo?.ogDescription || description,
       url: 'https://sdesign.co.in/',
-      siteName: data.settings.studioName,
+      siteName: 'Sdesign',
       type: 'website',
       images: [ogImage],
     },
@@ -67,32 +67,29 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const organizationJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': ['ArchitecturalFirm', 'ProfessionalService'],
-    name: data.settings.studioName || 'S_DE_SIGN',
-    alternateName: 'S_Designs Architecture Studio',
+    name: 'Sdesign',
+    alternateName: 'S_DE_SIGN',
     url: 'https://sdesign.co.in',
-    logo: homeSeo?.ogImage || data.settings.mainLogoUrl || 'https://sdesign.co.in/icon.png',
-    image: homeSeo?.ogImage || 'https://sdesign.co.in/icon.png',
+    logo: 'https://sdesign.co.in/icon.png',
+    image: 'https://sdesign.co.in/icon.png',
     description:
       homeSeo?.metaDescription ||
-      'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.',
+      'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Chennai',
-      addressRegion: 'Tamil Nadu',
+      addressRegion: 'Kerala',
       addressCountry: 'IN',
     },
-    areaServed: ['Chennai, India', 'Lisbon, Portugal', 'Worldwide'],
-    sameAs: ['https://instagram.com/', 'https://linkedin.com/'],
+    areaServed: ['Kerala, India', 'India', 'Worldwide'],
+    sameAs: ['https://www.instagram.com/sdesigns.studio'],
     priceRange: '$$$$',
     knowsAbout: [
-      'Residential Architecture',
       'Architectural Design',
-      'Interior Architecture',
-      'Exterior Architecture & Building Facade Design',
+      'Residential Architecture',
+      'Exterior Design & Facade Architecture',
+      'Interior Architecture & Spatial Design',
       'Landscape Architecture',
-      'Sustainable Architecture',
-      'Luxury Villa Design',
-      'Adaptive Reuse & Renovation',
+      '3D Architectural Visualization & Rendering',
     ],
   })
 

@@ -25,7 +25,7 @@ type HeroCinematicProps = {
 }
 
 export const HeroCinematic = React.memo(function HeroCinematic({
-  eyebrow = 'Independent architecture studio · Portugal / Worldwide',
+  eyebrow = 'Independent architecture & visualization studio · Kerala / Worldwide',
   titleLine1 = 'Spaces with',
   titleLine2 = 'quiet presence.',
   description = 'We shape considered places for living, working and gathering — grounded in material, light and context.',

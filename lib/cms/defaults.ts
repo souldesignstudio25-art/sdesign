@@ -174,8 +174,8 @@ export const DEFAULT_STUDIO_INFO: CmsStudioInfo = {
   philosophy:
     'We work slowly and collaboratively, building a clear idea before adding anything else. The result is architecture that feels inevitable — generous, tactile and made to last.',
   vision: 'To shape quiet, enduring architecture grounded in local craft, natural light, and timeless materiality.',
-  mission: 'Designing deeply considered residential, cultural, and hospitality environments across Portugal and worldwide.',
-  history: 'Founded in Lisbon as an independent architectural and spatial studio.',
+  mission: 'Designing deeply considered residential, cultural, and spatial environments across India and worldwide.',
+  history: 'Independent architectural, spatial and 3D visualization practice based in Kerala, India.',
   studioImages: [
     'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85',
   ],
@@ -356,7 +356,7 @@ export const DEFAULT_SETTINGS: CmsWebsiteSettings = {
   email: 'adithiruthiparambil12@gmail.com',
   phone: '',
   whatsapp: '',
-  officeAddress: 'Lisbon · Portugal',
+  officeAddress: 'Kerala · India',
   mapsUrl: '',
   businessHours: 'Mon – Fri · 09:00 – 18:00 WET',
   instagramUrl: '#top',
@@ -369,7 +369,7 @@ export const DEFAULT_SETTINGS: CmsWebsiteSettings = {
 }
 
 export const DEFAULT_HOMEPAGE: CmsHomepageContent = {
-  heroEyebrow: 'Independent architecture studio · Portugal / Worldwide',
+  heroEyebrow: 'Independent architecture & visualization studio · Kerala / Worldwide',
   heroTitleLine1: 'Spaces with',
   heroTitleLine2: 'quiet presence.',
   heroDescription:
@@ -480,13 +480,13 @@ export const DEFAULT_NAVIGATION: CmsNavItem[] = [
 export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
   home: {
     pageKey: 'home',
-    seoTitle: 'Sdesign | Architecture, Exteriors, Interiors & 3D Visualization Studio',
+    seoTitle: 'Sdesign | Architecture, Exteriors, Interiors, Firms & Studio',
     metaDescription:
-      'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.',
+      'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.',
     ogImage: '/icon.png',
-    ogTitle: 'Sdesign | Architecture, Exteriors, Interiors & 3D Visualization Studio',
+    ogTitle: 'Sdesign | Architecture, Exteriors, Interiors, Firms & Studio',
     ogDescription:
-      'Independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.',
+      'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.',
     canonicalUrl: 'https://sdesign.co.in/',
   },
 }
