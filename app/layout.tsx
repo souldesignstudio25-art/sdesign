@@ -13,12 +13,11 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getPublicSiteData()
   const homeSeo = data.seo.home
   const title =
-    homeSeo?.seoTitle || `${data.settings.studioName} — Architecture Studio & Residential Design Practice`
+    homeSeo?.seoTitle || 'Sdesign | Architecture, Exteriors, Interiors & 3D Visualization Studio'
   const description =
     homeSeo?.metaDescription ||
     'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.'
-  const favicon = data.settings.faviconUrl || '/s-design-logo.jpg'
-  const ogImage = homeSeo?.ogImage || favicon
+  const ogImage = homeSeo?.ogImage || '/icon.png'
 
   return {
     metadataBase: new URL('https://sdesign.co.in'),
@@ -26,8 +25,16 @@ export async function generateMetadata(): Promise<Metadata> {
     description,
     generator: 'v0.app',
     icons: {
-      icon: favicon,
-      apple: favicon,
+      icon: [
+        { url: '/favicon.ico', sizes: 'any' },
+        { url: '/icon-48x48.png', sizes: '48x48', type: 'image/png' },
+        { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+      ],
+      shortcut: '/favicon.ico',
+      apple: [
+        { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+      ],
     },
     alternates: {
       canonical: 'https://sdesign.co.in/',
@@ -63,8 +70,8 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     name: data.settings.studioName || 'S_DE_SIGN',
     alternateName: 'S_Designs Architecture Studio',
     url: 'https://sdesign.co.in',
-    logo: homeSeo?.ogImage || data.settings.faviconUrl || 'https://sdesign.co.in/s-design-logo.jpg',
-    image: homeSeo?.ogImage || 'https://sdesign.co.in/s-design-logo.jpg',
+    logo: homeSeo?.ogImage || data.settings.mainLogoUrl || 'https://sdesign.co.in/icon.png',
+    image: homeSeo?.ogImage || 'https://sdesign.co.in/icon.png',
     description:
       homeSeo?.metaDescription ||
       'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.',

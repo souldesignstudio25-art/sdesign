@@ -295,7 +295,7 @@ export const DEFAULT_SETTINGS: CmsWebsiteSettings = {
   altLogoUrl: '/s-design-emblem-clean.png',
   lightLogoUrl: '/s-design-emblem-clean.png',
   darkLogoUrl: '/s-design-emblem-white.png',
-  faviconUrl: '/s-design-logo.jpg',
+  faviconUrl: '/favicon.ico',
   footerLogoUrl: '/s-design-emblem-white.png',
   brandColors: {
     ivory: '#121110',
@@ -480,11 +480,11 @@ export const DEFAULT_NAVIGATION: CmsNavItem[] = [
 export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
   home: {
     pageKey: 'home',
-    seoTitle: 'S_DE_SIGN — Architecture Studio & Residential Design Practice',
+    seoTitle: 'Sdesign | Architecture, Exteriors, Interiors & 3D Visualization Studio',
     metaDescription:
       'S_DE_SIGN is an independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.',
-    ogImage: '/s-design-logo.jpg',
-    ogTitle: 'S_DE_SIGN — Architecture Studio & Residential Design Practice',
+    ogImage: '/icon.png',
+    ogTitle: 'Sdesign | Architecture, Exteriors, Interiors & 3D Visualization Studio',
     ogDescription:
       'Independent architecture studio specializing in modern residential architecture, luxury villas, interior environments, and spatial design in Chennai and worldwide.',
     canonicalUrl: 'https://sdesign.co.in/',
