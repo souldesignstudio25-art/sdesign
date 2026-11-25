@@ -88,12 +88,12 @@ export function FullNavOverlay({
     setMounted(true)
   }, [])
 
-  // Real-time Lisbon Studio clock
+  // Real-time Kerala Studio clock
   useEffect(() => {
     const updateTime = () => {
       const now = new Date()
       const time = now.toLocaleTimeString('en-GB', {
-        timeZone: 'Europe/Lisbon',
+        timeZone: 'Asia/Kolkata',
         hour: '2-digit',
         minute: '2-digit',
       })
@@ -239,7 +239,7 @@ export function FullNavOverlay({
           <div className="footer-meta-col">
             <span className="meta-label">LOCAL TIME</span>
             <span className="meta-value">
-              {timeString ? `${timeString} WET (GMT+0)` : 'Lisbon, PT'}
+              {timeString ? `${timeString} IST (GMT+5:30)` : 'Kerala, IN'}
             </span>
           </div>
           <div className="footer-meta-col socials">

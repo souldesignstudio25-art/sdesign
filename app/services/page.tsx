@@ -13,12 +13,20 @@ export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteData = await getPublicSiteData()
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
-  const title = `Architectural Services — Residential, Interior & Exterior Practice | ${studioName}`
+  const studioName = siteData.settings.studioName || 'Sdesign'
+  const servicesSeo = siteData.seo?.services
+  const title =
+    servicesSeo?.seoTitle?.trim() ||
+    `Architectural Services — Residential, Interior & Exterior Practice | ${studioName}`
   const description =
-    'Comprehensive architectural services by S_DE_SIGN: modern residential architecture, luxury villa design, interior environments, exterior facades, and landscape integration in Kerala, India, and worldwide.'
-  const canonicalUrl = 'https://sdesign.co.in/services'
-  const ogImage = siteData.settings.mainLogoUrl || '/s-design-logo.jpg'
+    servicesSeo?.metaDescription?.trim() ||
+    'Comprehensive architectural services by Sdesign: modern residential architecture, luxury villa design, interior environments, exterior facades, and landscape integration in Kerala, India, and worldwide.'
+  const rawCanonical = servicesSeo?.canonicalUrl?.trim()
+  const canonicalUrl =
+    rawCanonical && rawCanonical !== 'https://sdesign.co.in/' && rawCanonical !== 'https://sdesign.co.in'
+      ? rawCanonical
+      : 'https://sdesign.co.in/services'
+  const ogImage = servicesSeo?.ogImage?.trim() || siteData.settings.mainLogoUrl || '/icon.png'
 
   return {
     title,
@@ -29,12 +37,19 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
     openGraph: {
-      title,
-      description,
+      title: servicesSeo?.ogTitle?.trim() || title,
+      description: servicesSeo?.ogDescription?.trim() || description,
       url: canonicalUrl,
-      siteName: studioName,
+      siteName: 'Sdesign',
       type: 'website',
       images: [
         {
@@ -45,8 +60,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: servicesSeo?.ogTitle?.trim() || title,
+      description: servicesSeo?.ogDescription?.trim() || description,
       images: [ogImage],
     },
   }

@@ -493,10 +493,10 @@ export const HeroCinematic = React.memo(function HeroCinematic({
             <text className="blueprint-text dimension-text" x="720" y="234">DIMENSION: 18 400 mm</text>
 
             <text className="blueprint-text spec-badge" x="140" y="850">
-              SCALE 1:50 · CONCRETE RESIDENCE · LISBON
+              SCALE 1:50 · ARCHITECTURAL ELEVATION STUDY
             </text>
             <text className="blueprint-text spec-badge text-right" x="1300" y="850">
-              COORD: 38° 43&apos; 20&quot; N · 9° 08&apos; 21&quot; W
+              GEOMETRIC PROPORTION · TECTONIC DRAFTING
             </text>
           </g>
         </svg>

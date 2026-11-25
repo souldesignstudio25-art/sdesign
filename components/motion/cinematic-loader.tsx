@@ -89,7 +89,7 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
         </div>
 
         <div className="loader-status-row">
-          <span className="loader-coord">38.7223° N, 9.1393° W · LISBON</span>
+          <span className="loader-coord">ARCHITECTURE &amp; 3D VISUALIZATION</span>
           <span className="loader-percentage">
             {progress < 10 ? `0${progress}` : progress}%
           </span>

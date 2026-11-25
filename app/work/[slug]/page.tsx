@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     project.fullDescription?.trim() ||
     `${project.title} architectural case study in ${project.location} by ${studioName}.`
   const canonicalUrl = `https://sdesign.co.in/work/${project.slug}`
-  const ogImage = project.mainImage || '/s-design-logo.jpg'
+  const ogImage = project.mainImage || '/icon.png'
 
   return {
     title,

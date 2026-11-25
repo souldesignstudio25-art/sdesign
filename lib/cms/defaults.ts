@@ -489,6 +489,50 @@ export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
       'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.',
     canonicalUrl: 'https://sdesign.co.in/',
   },
+  work: {
+    pageKey: 'work',
+    seoTitle: 'Architecture Portfolio & Selected Works | Sdesign',
+    metaDescription:
+      'Explore selected architectural case studies by Sdesign: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.',
+    ogImage: '/icon.png',
+    ogTitle: 'Architecture Portfolio & Selected Works | Sdesign',
+    ogDescription:
+      'Explore selected architectural case studies by Sdesign: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.',
+    canonicalUrl: 'https://sdesign.co.in/work',
+  },
+  services: {
+    pageKey: 'services',
+    seoTitle: 'Architectural Services — Residential, Interior & Exterior Practice | Sdesign',
+    metaDescription:
+      'Comprehensive architectural services by Sdesign: modern residential architecture, luxury villa design, interior architecture, exterior elevations, and landscape spatial design.',
+    ogImage: '/icon.png',
+    ogTitle: 'Architectural Services — Residential, Interior & Exterior Practice | Sdesign',
+    ogDescription:
+      'Comprehensive architectural services by Sdesign: modern residential architecture, luxury villa design, interior architecture, exterior elevations, and landscape spatial design.',
+    canonicalUrl: 'https://sdesign.co.in/services',
+  },
+  about: {
+    pageKey: 'about',
+    seoTitle: 'About Sdesign | Architecture Studio & Design Practice',
+    metaDescription:
+      'Discover Sdesign, an independent architecture and spatial design practice in Kerala, India, dedicated to thoughtful spaces, materiality, and light.',
+    ogImage: '/icon.png',
+    ogTitle: 'About Sdesign | Architecture Studio & Design Practice',
+    ogDescription:
+      'Discover Sdesign, an independent architecture and spatial design practice in Kerala, India, dedicated to thoughtful spaces, materiality, and light.',
+    canonicalUrl: 'https://sdesign.co.in/#founder',
+  },
+  contact: {
+    pageKey: 'contact',
+    seoTitle: 'Contact Sdesign | Architecture & 3D Visualization Studio',
+    metaDescription:
+      'Initiate a conversation with Sdesign for architectural design, interior architecture, renovations, and 3D visualization commissions.',
+    ogImage: '/icon.png',
+    ogTitle: 'Contact Sdesign | Architecture & 3D Visualization Studio',
+    ogDescription:
+      'Initiate a conversation with Sdesign for architectural design, interior architecture, renovations, and 3D visualization commissions.',
+    canonicalUrl: 'https://sdesign.co.in/#contact',
+  },
 }
 
 export const DEFAULT_PUBLIC_SITE_DATA: PublicSiteData = {

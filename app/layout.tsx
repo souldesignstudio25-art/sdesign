@@ -39,6 +39,17 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: 'https://sdesign.co.in/',
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       title: homeSeo?.ogTitle || title,
       description: homeSeo?.ogDescription || description,

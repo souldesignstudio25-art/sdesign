@@ -37,7 +37,7 @@ export async function generateMetadata({
   const title = `${service.seoTitle} | ${studioName}`
   const description = service.seoDescription
   const canonicalUrl = `https://sdesign.co.in/services/${service.slug}`
-  const ogImage = siteData.settings.mainLogoUrl || '/s-design-logo.jpg'
+  const ogImage = siteData.settings.mainLogoUrl || '/icon.png'
 
   return {
     title,

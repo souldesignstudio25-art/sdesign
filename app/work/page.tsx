@@ -13,12 +13,19 @@ export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteData = await getPublicSiteData()
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
-  const title = `Architecture Portfolio & Selected Works — ${studioName}`
+  const studioName = siteData.settings.studioName || 'Sdesign'
+  const workSeo = siteData.seo?.work
+  const title =
+    workSeo?.seoTitle?.trim() || `Architecture Portfolio & Selected Works | ${studioName}`
   const description =
-    'Explore selected architectural case studies by S_DE_SIGN: modern luxury villas, contemporary private residences, cultural retreats, and tactile interior architecture in Kerala, India, and worldwide.'
-  const canonicalUrl = 'https://sdesign.co.in/work'
-  const ogImage = siteData.settings.mainLogoUrl || '/s-design-logo.jpg'
+    workSeo?.metaDescription?.trim() ||
+    'Explore selected architectural case studies by Sdesign: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.'
+  const rawCanonical = workSeo?.canonicalUrl?.trim()
+  const canonicalUrl =
+    rawCanonical && rawCanonical !== 'https://sdesign.co.in/' && rawCanonical !== 'https://sdesign.co.in'
+      ? rawCanonical
+      : 'https://sdesign.co.in/work'
+  const ogImage = workSeo?.ogImage?.trim() || siteData.settings.mainLogoUrl || '/icon.png'
 
   return {
     title,
@@ -38,10 +45,10 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     },
     openGraph: {
-      title,
-      description,
+      title: workSeo?.ogTitle?.trim() || title,
+      description: workSeo?.ogDescription?.trim() || description,
       url: canonicalUrl,
-      siteName: studioName,
+      siteName: 'Sdesign',
       type: 'website',
       images: [
         {
@@ -52,8 +59,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: workSeo?.ogTitle?.trim() || title,
+      description: workSeo?.ogDescription?.trim() || description,
       images: [ogImage],
     },
   }
