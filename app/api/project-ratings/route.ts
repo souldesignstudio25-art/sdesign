@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getMongoDb } from '@/lib/mongodb/client'
+import { checkRateLimit } from '@/lib/security/rate-limit'
 
 function sanitizeText(val: unknown, maxLength = 1000): string {
   if (typeof val !== 'string') return ''
@@ -11,6 +12,20 @@ function sanitizeText(val: unknown, maxLength = 1000): string {
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+    const rateLimit = checkRateLimit(`rating:${ip}`, { limit: 10, windowMs: 60000 }) // 10 ratings per minute
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { error: 'Too many rating submissions. Please slow down.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateLimit.reset),
+          },
+        }
+      )
+    }
+
     const db = await getMongoDb()
     if (!db) {
       return NextResponse.json(

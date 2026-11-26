@@ -1,9 +1,24 @@
 import { NextResponse } from 'next/server'
 import { getMongoDb } from '@/lib/mongodb/client'
 import { sendEnquiryNotificationEmail } from '@/lib/email/resend'
+import { checkRateLimit } from '@/lib/security/rate-limit'
 
 export async function POST(request: Request) {
   try {
+    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
+    const rateLimit = checkRateLimit(`enquiry:${ip}`, { limit: 5, windowMs: 600000 }) // 5 requests per 10 mins
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { error: 'Too many enquiry submissions from this IP. Please try again later.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': String(rateLimit.reset),
+          },
+        }
+      )
+    }
+
     const body = await request.json()
 
     const name = String(body.name || '').trim()
@@ -28,7 +43,6 @@ export async function POST(request: Request) {
     const db = await getMongoDb()
     const now = new Date().toISOString()
 
-    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown'
     const userAgent = request.headers.get('user-agent') || 'unknown'
 
     const enquiryDoc = {
