@@ -92,7 +92,11 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       addressCountry: 'IN',
     },
     areaServed: ['Kerala, India', 'India', 'Worldwide'],
-    sameAs: ['https://www.instagram.com/sdesigns.studio'],
+    sameAs: [
+      'https://www.instagram.com/s_de_sign_',
+      'https://www.linkedin.com/in/ajith-kumar-t-s-915237448/',
+      'https://www.facebook.com/share/1CTup5V7cf/',
+    ],
     priceRange: '$$$$',
     knowsAbout: [
       'Architectural Design',
