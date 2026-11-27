@@ -13,10 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getPublicSiteData()
   const homeSeo = data.seo?.home
   const title =
-    homeSeo?.seoTitle || 'Sdesign | Architecture, Exteriors, Interiors, Firms & Studio'
+    homeSeo?.seoTitle || 'SYLEN DESIGNS | Architecture, Exteriors, Interiors, Firms & Studio'
   const description =
     homeSeo?.metaDescription ||
-    'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.'
+    'Sylen Designs is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.'
   const ogImage = homeSeo?.ogImage || '/icon.png'
 
   return {
@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: homeSeo?.ogTitle || title,
       description: homeSeo?.ogDescription || description,
       url: 'https://sdesign.co.in/',
-      siteName: 'Sdesign',
+      siteName: 'SYLEN DESIGNS',
       type: 'website',
       images: [ogImage],
     },
@@ -78,14 +78,14 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const organizationJson = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': ['ArchitecturalFirm', 'ProfessionalService'],
-    name: 'Sdesign',
-    alternateName: 'S_DE_SIGN',
+    name: 'SYLEN DESIGNS',
+    alternateName: 'Sylen Designs',
     url: 'https://sdesign.co.in',
     logo: 'https://sdesign.co.in/icon.png',
     image: 'https://sdesign.co.in/icon.png',
     description:
       homeSeo?.metaDescription ||
-      'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.',
+      'Sylen Designs is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.',
     address: {
       '@type': 'PostalAddress',
       addressRegion: 'Kerala',
@@ -184,7 +184,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         />
         <h1 className="sr-only">{data.settings.studioName} — Architecture Studio &amp; Residential Design</h1>
         <ArchitecturalLoaderProvider
-          studioName={data.settings.studioName}
+          studioName={data.settings.studioName || 'SYLEN DESIGNS'}
           studioSubtitle={data.settings.studioSubtitle}
         >
           <SmoothScrollProvider>

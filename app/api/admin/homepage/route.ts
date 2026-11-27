@@ -83,7 +83,7 @@ export async function PATCH(request: Request) {
     heroVideoUrl: heroVideo,
     heroPosterUrl: String(body.heroPosterUrl ?? ''),
     heroIndexText: String(body.heroIndexText ?? '01 / 04'),
-    heroStudioName: String(body.heroStudioName ?? 'S_DE_SIGN'),
+    heroStudioName: String(body.heroStudioName ?? 'SYLEN DESIGNS'),
     heroStudioSubtitle: String(body.heroStudioSubtitle ?? ''),
     selectedWorkKicker: String(body.selectedWorkKicker ?? ''),
     selectedWorkHeading: String(body.selectedWorkHeading ?? ''),

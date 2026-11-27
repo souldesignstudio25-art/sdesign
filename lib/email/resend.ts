@@ -39,21 +39,21 @@ export async function sendEnquiryNotificationEmail({
 
   try {
     const resend = new Resend(apiKey)
-    const sender = process.env.RESEND_FROM_EMAIL || 'S_Designs <onboarding@resend.dev>'
+    const sender = process.env.RESEND_FROM_EMAIL || 'Sylen Designs <onboarding@resend.dev>'
 
     const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
-  <title>New Project Enquiry — S_Designs</title>
+  <title>New Project Enquiry — Sylen Designs</title>
 </head>
 <body style="margin: 0; padding: 24px; background-color: #121110; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #f4efe6;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #181614; border: 1px solid rgba(244, 239, 230, 0.12); border-radius: 8px; overflow: hidden;">
     <!-- Header -->
     <tr>
       <td style="padding: 32px 32px 24px; border-bottom: 1px solid rgba(244, 239, 230, 0.08); background-color: #141311;">
-        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #d9b686; font-weight: 600;">S_DE_SIGN · STUDIO INQUIRY</span>
+        <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #d9b686; font-weight: 600;">SYLEN DESIGNS · STUDIO INQUIRY</span>
         <h1 style="margin: 8px 0 0; font-family: Georgia, serif; font-size: 24px; font-weight: 400; color: #fbf9f4; letter-spacing: -0.01em;">
           New Project Inquiry Received
         </h1>
@@ -102,7 +102,7 @@ export async function sendEnquiryNotificationEmail({
 
         <!-- Action Button -->
         <div style="margin-top: 28px; text-align: left;">
-          <a href="mailto:${email}?subject=Regarding%20your%20project%20inquiry%20%E2%80%94%20S_Designs" style="display: inline-block; padding: 12px 24px; background-color: #d9b686; color: #121110; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px;">
+          <a href="mailto:${email}?subject=Regarding%20your%20project%20inquiry%20%E2%80%94%20Sylen%20Designs" style="display: inline-block; padding: 12px 24px; background-color: #d9b686; color: #121110; text-decoration: none; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 3px;">
             Reply to ${name}
           </a>
         </div>
@@ -112,7 +112,7 @@ export async function sendEnquiryNotificationEmail({
     <!-- Footer -->
     <tr>
       <td style="padding: 20px 32px; background-color: #141311; border-top: 1px solid rgba(244, 239, 230, 0.08); text-align: center; font-size: 11px; color: #7c7367;">
-        This project inquiry was submitted via the S_Designs Studio website contact form.
+        This project inquiry was submitted via the Sylen Designs Studio website contact form.
       </td>
     </tr>
   </table>
@@ -124,7 +124,7 @@ export async function sendEnquiryNotificationEmail({
       from: sender,
       to: [toEmail],
       replyTo: email,
-      subject: `New Project Inquiry: ${name} — S_Designs`,
+      subject: `New Project Inquiry: ${name} — Sylen Designs`,
       html: htmlContent,
     })
 

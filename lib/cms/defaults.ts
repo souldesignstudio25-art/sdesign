@@ -48,7 +48,7 @@ export const DEFAULT_PROJECTS: CmsProject[] = staticProjects.map((p, idx) => ({
   displayOrder: idx,
   status: 'published',
   featured: true,
-  seoTitle: `${p.title} — S_Designs Architecture`,
+  seoTitle: `${p.title} — SYLEN DESIGNS`,
   seoDescription: p.description,
   updatedAt: '2026-01-01T00:00:00.000Z',
 }))
@@ -64,8 +64,8 @@ export const DEFAULT_SERVICES: CmsService[] = [
     iconName: 'home',
     displayOrder: 0,
     status: 'published',
-    seoTitle: 'Residential Architecture Firm & Luxury Villa Architect | S_DE_SIGN',
-    seoDescription: 'S_DE_SIGN is a modern residential architecture firm designing luxury villas, custom private residences, and minimalist homes.',
+    seoTitle: 'Residential Architecture Firm & Luxury Villa Architect | SYLEN DESIGNS',
+    seoDescription: 'Sylen Designs is a modern residential architecture firm designing luxury villas, custom private residences, and minimalist homes.',
   },
   {
     id: 'default-service-2',
@@ -77,7 +77,7 @@ export const DEFAULT_SERVICES: CmsService[] = [
     iconName: 'layers',
     displayOrder: 1,
     status: 'published',
-    seoTitle: 'Interior Architecture Firm & Spatial Design Studio | S_DE_SIGN',
+    seoTitle: 'Interior Architecture Firm & Spatial Design Studio | SYLEN DESIGNS',
     seoDescription: 'Bespoke interior architecture firm specializing in spatial curation, custom millwork, tactile materials, and integrated architectural lighting design.',
   },
   {
@@ -90,8 +90,8 @@ export const DEFAULT_SERVICES: CmsService[] = [
     iconName: 'sparkles',
     displayOrder: 2,
     status: 'published',
-    seoTitle: 'Exterior Architecture & Building Elevation Design | S_DE_SIGN',
-    seoDescription: 'Architectural exterior design, high-performance facade engineering, and modern building elevation design by S_DE_SIGN architecture studio.',
+    seoTitle: 'Exterior Architecture & Building Elevation Design | SYLEN DESIGNS',
+    seoDescription: 'Architectural exterior design, high-performance facade engineering, and modern building elevation design by Sylen Designs architecture studio.',
   },
   {
     id: 'default-service-4',
@@ -103,7 +103,7 @@ export const DEFAULT_SERVICES: CmsService[] = [
     iconName: 'trees',
     displayOrder: 3,
     status: 'published',
-    seoTitle: 'Landscape Architecture Firm & Outdoor Spatial Design | S_DE_SIGN',
+    seoTitle: 'Landscape Architecture Firm & Outdoor Spatial Design | SYLEN DESIGNS',
     seoDescription: 'Context-sensitive landscape architecture, courtyard design, reflection pools, and outdoor living environments integrated seamlessly with built structures.',
   },
   {
@@ -116,7 +116,7 @@ export const DEFAULT_SERVICES: CmsService[] = [
     iconName: 'building2',
     displayOrder: 4,
     status: 'published',
-    seoTitle: 'Commercial Architecture Firm & Hospitality Design | S_DE_SIGN',
+    seoTitle: 'Commercial Architecture Firm & Hospitality Design | SYLEN DESIGNS',
     seoDescription: 'Contemporary commercial architecture firm creating boutique hospitality estates, creative work studios, and contemplative commercial environments.',
   },
   {
@@ -129,7 +129,7 @@ export const DEFAULT_SERVICES: CmsService[] = [
     iconName: 'compass',
     displayOrder: 5,
     status: 'published',
-    seoTitle: 'Architectural Renovation & Adaptive Reuse Firm | S_DE_SIGN',
+    seoTitle: 'Architectural Renovation & Adaptive Reuse Firm | SYLEN DESIGNS',
     seoDescription: 'Specialized architectural renovation, historic building restoration, and adaptive reuse architecture. Preserving heritage while introducing modern comfort.',
   },
 ]
@@ -145,7 +145,7 @@ export const DEFAULT_FOUNDER_INFO: CmsFounderInfo = {
   founderPhoto:
     'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85',
   founderBio:
-    'Leading S_DE_SIGN with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context. Every project is conceived as an enduring sanctuary—crafted slowly, deliberately, and in harmony with the landscape.',
+    'Leading Sylen Designs with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context. Every project is conceived as an enduring sanctuary—crafted slowly, deliberately, and in harmony with the landscape.',
   philosophy:
     'Architecture is not merely about form or enclosure; it is the quiet art of making room for life, shaped by light and tactile honesty.',
   quote:
@@ -168,9 +168,9 @@ export const DEFAULT_STUDIO_INFO: CmsStudioInfo = {
   heading: 'Architecture is the art of',
   accentHeading: 'making room for life.',
   introText:
-    'S_Designs is a small, independent practice working across architecture, interiors and objects.',
+    'Sylen Designs is a small, independent practice working across architecture, interiors and objects.',
   description:
-    'S_Designs is a small, independent practice working across architecture, interiors and objects. We believe the most lasting spaces begin with careful attention — to how light moves, how materials age, and how people belong.',
+    'Sylen Designs is a small, independent practice working across architecture, interiors and objects. We believe the most lasting spaces begin with careful attention — to how light moves, how materials age, and how people belong.',
   philosophy:
     'We work slowly and collaboratively, building a clear idea before adding anything else. The result is architecture that feels inevitable — generous, tactile and made to last.',
   vision: 'To shape quiet, enduring architecture grounded in local craft, natural light, and timeless materiality.',
@@ -186,7 +186,7 @@ export const DEFAULT_STUDIO_INFO: CmsStudioInfo = {
       id: 'founder-primary',
       name: 'Henrique Almeida',
       role: 'Principal Architect & Founder',
-      bio: 'Leading S_DE_SIGN with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context.',
+      bio: 'Leading Sylen Designs with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context.',
       photoUrl:
         'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=85',
     },
@@ -288,7 +288,7 @@ export const DEFAULT_CONTACT_BOT_SETTINGS: ContactBotSettings = {
 }
 
 export const DEFAULT_SETTINGS: CmsWebsiteSettings = {
-  studioName: 'S_DE_SIGN',
+  studioName: 'SYLEN DESIGNS',
   studioSubtitle: 'ARCHITECTURE / STUDIO',
   tagline: 'Architecture / Objects',
   mainLogoUrl: '/s-design-emblem-white.png',
@@ -364,7 +364,7 @@ export const DEFAULT_SETTINGS: CmsWebsiteSettings = {
   pinterestUrl: '',
   linkedinUrl: '#top',
   otherSocials: [],
-  footerCopyright: '© 2024 S_Designs',
+  footerCopyright: '© 2026 Sylen Designs. All rights reserved.',
   contactBot: DEFAULT_CONTACT_BOT_SETTINGS,
 }
 
@@ -377,7 +377,7 @@ export const DEFAULT_HOMEPAGE: CmsHomepageContent = {
   heroImageUrl:
     'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=90',
   heroIndexText: '01 / 04',
-  heroStudioName: 'S_DE_SIGN',
+  heroStudioName: 'SYLEN DESIGNS',
   heroStudioSubtitle: 'ARCHITECTURE & SPATIAL PRACTICE',
   selectedWorkKicker: 'SELECTED WORKS ARCHIVE',
   selectedWorkHeading: '2021 — 2024',
@@ -480,57 +480,57 @@ export const DEFAULT_NAVIGATION: CmsNavItem[] = [
 export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
   home: {
     pageKey: 'home',
-    seoTitle: 'Sdesign | Architecture, Exteriors, Interiors, Firms & Studio',
+    seoTitle: 'SYLEN DESIGNS | Architecture, Exteriors, Interiors, Firms & Studio',
     metaDescription:
-      'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.',
+      'Sylen Designs is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.',
     ogImage: '/icon.png',
-    ogTitle: 'Sdesign | Architecture, Exteriors, Interiors, Firms & Studio',
+    ogTitle: 'SYLEN DESIGNS | Architecture, Exteriors, Interiors, Firms & Studio',
     ogDescription:
-      'Sdesign is an independent architecture studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D visualization.',
+      'Sylen Designs is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.',
     canonicalUrl: 'https://sdesign.co.in/',
   },
   work: {
     pageKey: 'work',
-    seoTitle: 'Architecture Portfolio & Selected Works | Sdesign',
+    seoTitle: 'Architecture Portfolio & Selected Works | SYLEN DESIGNS',
     metaDescription:
-      'Explore selected architectural case studies by Sdesign: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.',
+      'Explore selected architectural case studies by Sylen Designs: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.',
     ogImage: '/icon.png',
-    ogTitle: 'Architecture Portfolio & Selected Works | Sdesign',
+    ogTitle: 'Architecture Portfolio & Selected Works | SYLEN DESIGNS',
     ogDescription:
-      'Explore selected architectural case studies by Sdesign: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.',
+      'Explore selected architectural case studies by Sylen Designs: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.',
     canonicalUrl: 'https://sdesign.co.in/work',
   },
   services: {
     pageKey: 'services',
-    seoTitle: 'Architectural Services — Residential, Interior & Exterior Practice | Sdesign',
+    seoTitle: 'Architectural Services — Residential, Interior & Exterior Practice | SYLEN DESIGNS',
     metaDescription:
-      'Comprehensive architectural services by Sdesign: modern residential architecture, luxury villa design, interior architecture, exterior elevations, and landscape spatial design.',
+      'Comprehensive architectural services by Sylen Designs: modern residential architecture, luxury villa design, interior architecture, exterior elevations, and landscape spatial design.',
     ogImage: '/icon.png',
-    ogTitle: 'Architectural Services — Residential, Interior & Exterior Practice | Sdesign',
+    ogTitle: 'Architectural Services — Residential, Interior & Exterior Practice | SYLEN DESIGNS',
     ogDescription:
-      'Comprehensive architectural services by Sdesign: modern residential architecture, luxury villa design, interior architecture, exterior elevations, and landscape spatial design.',
+      'Comprehensive architectural services by Sylen Designs: modern residential architecture, luxury villa design, interior architecture, exterior elevations, and landscape spatial design.',
     canonicalUrl: 'https://sdesign.co.in/services',
   },
   about: {
     pageKey: 'about',
-    seoTitle: 'About Sdesign | Architecture Studio & Design Practice',
+    seoTitle: 'About Sylen Designs | Architecture Studio & Design Practice',
     metaDescription:
-      'Discover Sdesign, an independent architecture and spatial design practice in Kerala, India, dedicated to thoughtful spaces, materiality, and light.',
+      'Discover Sylen Designs, an independent architecture and spatial design practice in Kerala, India, dedicated to thoughtful spaces, materiality, and light.',
     ogImage: '/icon.png',
-    ogTitle: 'About Sdesign | Architecture Studio & Design Practice',
+    ogTitle: 'About Sylen Designs | Architecture Studio & Design Practice',
     ogDescription:
-      'Discover Sdesign, an independent architecture and spatial design practice in Kerala, India, dedicated to thoughtful spaces, materiality, and light.',
+      'Discover Sylen Designs, an independent architecture and spatial design practice in Kerala, India, dedicated to thoughtful spaces, materiality, and light.',
     canonicalUrl: 'https://sdesign.co.in/#founder',
   },
   contact: {
     pageKey: 'contact',
-    seoTitle: 'Contact Sdesign | Architecture & 3D Visualization Studio',
+    seoTitle: 'Contact Sylen Designs | Architecture & 3D Visualization Studio',
     metaDescription:
-      'Initiate a conversation with Sdesign for architectural design, interior architecture, renovations, and 3D visualization commissions.',
+      'Initiate a conversation with Sylen Designs for architectural design, interior architecture, renovations, and 3D visualization commissions.',
     ogImage: '/icon.png',
-    ogTitle: 'Contact Sdesign | Architecture & 3D Visualization Studio',
+    ogTitle: 'Contact Sylen Designs | Architecture & 3D Visualization Studio',
     ogDescription:
-      'Initiate a conversation with Sdesign for architectural design, interior architecture, renovations, and 3D visualization commissions.',
+      'Initiate a conversation with Sylen Designs for architectural design, interior architecture, renovations, and 3D visualization commissions.',
     canonicalUrl: 'https://sdesign.co.in/#contact',
   },
 }

@@ -67,8 +67,8 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
       <div className="loader-content-wrap">
         <div className="loader-mark-frame">
           <Image
-            src="/s-design-logo.jpg"
-            alt="S_Designs Architectural Mark"
+            src="/icon.png"
+            alt="Sylen Designs Architectural Mark"
             width={72}
             height={72}
             className="loader-logo-img"
@@ -77,7 +77,7 @@ export function CinematicLoader({ onComplete }: CinematicLoaderProps) {
         </div>
 
         <div className="loader-brand-title">
-          <span>S_DE_SIGN</span>
+          <span>SYLEN DESIGNS</span>
           <span className="loader-sub">ARCHITECTURE &amp; SPATIAL PRACTICE</span>
         </div>
 

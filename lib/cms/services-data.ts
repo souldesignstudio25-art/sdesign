@@ -29,9 +29,9 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     title: 'Residential Architecture & Private Villa Design',
     shortTitle: 'Residential Architecture',
     kicker: 'SERVICE DISCIPLINE ( 01 )',
-    seoTitle: 'Residential Architecture Firm & Luxury Villa Architect | S_DE_SIGN',
+    seoTitle: ' DESIGNS',
     seoDescription:
-      'S_DE_SIGN is a modern residential architecture firm designing luxury villas, custom private residences, and minimalist homes. Contextual, climate-responsive, and enduring.',
+      'Sylen Designs is a modern residential architecture firm designing luxury villas, custom private residences, and minimalist homes. Contextual, climate-responsive, and enduring.',
     leadParagraph:
       'We design private residences and luxury villas shaped around the daily rituals of living—orchestrating natural light, tactile materiality, and spatial stillness.',
     fullOverview:
@@ -111,13 +111,13 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     title: 'Interior Architecture & Spatial Curation',
     shortTitle: 'Interior Architecture',
     kicker: 'SERVICE DISCIPLINE ( 02 )',
-    seoTitle: 'Interior Architecture Firm & Spatial Design Studio | S_DE_SIGN',
+    seoTitle: ' DESIGNS',
     seoDescription:
       'Bespoke interior architecture firm specializing in spatial curation, custom millwork, tactile materials, and integrated architectural lighting design.',
     leadParagraph:
       'Interior architecture is the thoughtful crafting of internal space—choreographing flow, proportions, acoustic warmth, and bespoke joinery with quiet precision.',
     fullOverview:
-      'At S_DE_SIGN, interior architecture is inseparable from the external building shell. We sculpt interior volumes with honest materials—hand-applied limewash, warm oak, honed travertine, and raw linen. Every spatial threshold, sightline, and lighting fixture is calibrated to produce a calming atmosphere devoid of superfluous visual noise. Our studio designs bespoke built-in cabinetry, integrated seating, and curated transitions that feel intrinsic to the building’s structural bones.',
+      'At Sylen Designs, interior architecture is inseparable from the external building shell. We sculpt interior volumes with honest materials—hand-applied limewash, warm oak, honed travertine, and raw linen. Every spatial threshold, sightline, and lighting fixture is calibrated to produce a calming atmosphere devoid of superfluous visual noise. Our studio designs bespoke built-in cabinetry, integrated seating, and curated transitions that feel intrinsic to the building’s structural bones.',
     disciplines: [
       'Bespoke Joinery & Millwork Design',
       'Spatial Flow & Layout Optimization',
@@ -177,7 +177,7 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
           'Interior design often focuses on furnishings, fabrics, and decorative accents. Interior architecture alters and shapes the physical structure of indoor space—including wall layouts, door openings, ceilings, built-in millwork, material finishes, and integrated architectural lighting.',
       },
       {
-        question: 'Can S_DE_SIGN handle custom millwork and cabinetry detailing?',
+        question: 'Can Sylen Designs handle custom millwork and cabinetry detailing?',
         answer:
           'Yes. Bespoke joinery is central to our work. We produce shop-ready architectural drawings for custom wardrobes, concealed kitchens, bathroom vanities, and integrated wall paneling.',
       },
@@ -188,13 +188,13 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     title: 'Exterior Architecture & Building Facade Design',
     shortTitle: 'Exterior Architecture',
     kicker: 'SERVICE DISCIPLINE ( 03 )',
-    seoTitle: 'Exterior Architecture & Building Elevation Design | S_DE_SIGN',
+    seoTitle: ' DESIGNS',
     seoDescription:
-      'Architectural exterior design, high-performance facade engineering, and modern building elevation design by S_DE_SIGN architecture studio.',
+      'Architectural exterior design, high-performance facade engineering, and modern building elevation design by Sylen Designs architecture studio.',
     leadParagraph:
       'We sculpt enduring building envelopes and facade elevations that balance tectonic presence with climatic responsiveness and timeless materiality.',
     fullOverview:
-      'A building’s exterior is its conversation with the world. S_DE_SIGN conceives facades not as flat decorative surfaces, but as three-dimensional protective skins that modulate weather, frame landscape vistas, and cast ever-shifting shadows across the day. By utilizing enduring exterior materials such as monolithic stone, ventilated terracotta rainscreens, rammed earth, and textured plaster, our building elevations age gracefully while providing optimal thermal insulation and weather protection.',
+      'A building’s exterior is its conversation with the world. Sylen Designs conceives facades not as flat decorative surfaces, but as three-dimensional protective skins that modulate weather, frame landscape vistas, and cast ever-shifting shadows across the day. By utilizing enduring exterior materials such as monolithic stone, ventilated terracotta rainscreens, rammed earth, and textured plaster, our building elevations age gracefully while providing optimal thermal insulation and weather protection.',
     disciplines: [
       'Modern House Exterior Design',
       'Architectural Elevation Design',
@@ -259,11 +259,11 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     title: 'Landscape Architecture & Spatial Integration',
     shortTitle: 'Landscape Architecture',
     kicker: 'SERVICE DISCIPLINE ( 04 )',
-    seoTitle: 'Landscape Architecture Firm & Outdoor Spatial Design | S_DE_SIGN',
+    seoTitle: ' DESIGNS',
     seoDescription:
       'Context-sensitive landscape architecture, courtyard design, reflection pools, and outdoor living environments integrated seamlessly with built structures.',
     leadParagraph:
-      'Landscape architecture at S_DE_SIGN dissolves the boundary between interior sanctuaries and the natural world, crafting outdoor rooms of enduring beauty.',
+      'Landscape architecture at Sylen Designs dissolves the boundary between interior sanctuaries and the natural world, crafting outdoor rooms of enduring beauty.',
     fullOverview:
       'We believe architecture and landscape must be conceived as a single uninterrupted continuum. Our landscape architecture practice designs contemplative internal courtyards, stone garden terraces, reflection pools, and native botanical compositions that respond to the land’s natural contours. By prioritizing water conservation, soil health, and microclimate moderation, our outdoor environments enrich biodiversity while offering quiet retreats for open-air living.',
     disciplines: [
@@ -314,7 +314,7 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     featuredProjectSlugs: ['pavilion-of-light', 'casa-loma', 'onyx-villa'],
     faqs: [
       {
-        question: 'How does S_DE_SIGN integrate landscape architecture with the house design?',
+        question: 'How does Sylen Designs integrate landscape architecture with the house design?',
         answer:
           'We plan both simultaneously. Indoor floor finishes extend directly onto exterior terraces, interior sightlines terminate at carefully positioned specimen trees or water elements, and courtyard spaces bring natural light and vegetation into the core of the home.',
       },
@@ -330,13 +330,13 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     title: 'Commercial & Hospitality Architecture',
     shortTitle: 'Commercial & Hospitality',
     kicker: 'SERVICE DISCIPLINE ( 05 )',
-    seoTitle: 'Commercial Architecture Firm & Hospitality Design | S_DE_SIGN',
+    seoTitle: ' DESIGNS',
     seoDescription:
       'Contemporary commercial architecture firm creating boutique hospitality estates, creative work studios, and contemplative commercial environments.',
     leadParagraph:
       'We design commercial and hospitality environments that communicate brand distinction through spatial authenticity, material honesty, and human-scaled intimacy.',
     fullOverview:
-      'In a world of generic commercial spaces, S_DE_SIGN creates destinations that leave an indelible impression. From boutique hillside guest retreats to creative studio ateliers and curated retail galleries, our commercial work balances memorable visitor journeys with rigorous operational efficiency. We craft environments that foster collaboration, focused contemplation, and emotional resonance—elevating everyday commercial exchanges into unforgettable spatial moments.',
+      'In a world of generic commercial spaces, Sylen Designs creates destinations that leave an indelible impression. From boutique hillside guest retreats to creative studio ateliers and curated retail galleries, our commercial work balances memorable visitor journeys with rigorous operational efficiency. We craft environments that foster collaboration, focused contemplation, and emotional resonance—elevating everyday commercial exchanges into unforgettable spatial moments.',
     disciplines: [
       'Boutique Hospitality & Villa Retreats',
       'Creative Workspaces & Design Ateliers',
@@ -385,7 +385,7 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     featuredProjectSlugs: ['onyx-villa', 'dune-atelier', 'pavilion-of-light'],
     faqs: [
       {
-        question: 'What types of commercial projects does S_DE_SIGN undertake?',
+        question: 'What types of commercial projects does Sylen Designs undertake?',
         answer:
           'We specialize in boutique hospitality estates, executive design ateliers, high-end commercial showrooms, art galleries, and bespoke office environments where architectural atmosphere is essential.',
       },
@@ -401,13 +401,13 @@ export const ARCHITECTURAL_SERVICES: DetailedService[] = [
     title: 'Renovation, Restoration & Adaptive Reuse',
     shortTitle: 'Renovation & Reuse',
     kicker: 'SERVICE DISCIPLINE ( 06 )',
-    seoTitle: 'Architectural Renovation & Adaptive Reuse Firm | S_DE_SIGN',
+    seoTitle: ' DESIGNS',
     seoDescription:
       'Specialized architectural renovation, historic building restoration, and adaptive reuse architecture. Preserving heritage while introducing modern comfort.',
     leadParagraph:
       'We breathe new vitality into historic and existing structures—honoring original architectural character while introducing modern daylight and spatial flow.',
     fullOverview:
-      'Renovation and adaptive reuse are among the most sustainable acts an architecture studio can perform. Rather than demolishing, S_DE_SIGN uncovers the latent poetry within existing masonry, historic timber trusses, and heritage stone vaults. We surgically remove awkward later additions, introduce double-height light wells, stabilize historic envelopes, and integrate discreet modern infrastructure, creating a timeless dialogue between the historic and the contemporary.',
+      'Renovation and adaptive reuse are among the most sustainable acts an architecture studio can perform. Rather than demolishing, Sylen Designs uncovers the latent poetry within existing masonry, historic timber trusses, and heritage stone vaults. We surgically remove awkward later additions, introduce double-height light wells, stabilize historic envelopes, and integrate discreet modern infrastructure, creating a timeless dialogue between the historic and the contemporary.',
     disciplines: [
       'Historic Villa & Estate Restoration',
       'Adaptive Reuse of Heritage Structures',

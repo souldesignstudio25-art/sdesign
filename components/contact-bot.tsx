@@ -17,7 +17,7 @@ type ContactBotProps = {
   linkedinUrl?: string
 }
 
-const PREFILLED_WHATSAPP_MESSAGE = "Hello S_Designs, I'm interested in discussing a project."
+const PREFILLED_WHATSAPP_MESSAGE = "Hello Sylen Designs, I'm interested in discussing a project."
 
 function sanitizeHttpUrl(val: string): string {
   const trimmed = val.trim()
@@ -169,8 +169,8 @@ export function ContactBot({
   const resolvedMailto =
     isEmailEnabled && emailRaw
       ? `mailto:${emailRaw}?subject=${encodeURIComponent(
-          'Project Inquiry — S_Designs'
-        )}&body=${encodeURIComponent("Hello S_Designs,\n\nI'm interested in discussing a project.")}`
+          'Project Inquiry — Sylen Designs'
+        )}&body=${encodeURIComponent("Hello Sylen Designs,\n\nI'm interested in discussing a project.")}`
       : ''
 
   // 4. Resolve Facebook

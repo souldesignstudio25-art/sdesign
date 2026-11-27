@@ -67,7 +67,7 @@ export const FounderSection = React.memo(function FounderSection({
   const founderBio =
     founder?.founderBio?.trim() ||
     firstMember?.bio?.trim() ||
-    '[Insert founder introduction — Leading S_DE_SIGN with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context. Every project is conceived as an enduring sanctuary—crafted slowly, deliberately, and in harmony with the landscape.]'
+    '[Insert founder introduction — Leading Sylen Designs with an unwavering commitment to spatial silence, tactile materiality, and the dialogue between built form and natural context. Every project is conceived as an enduring sanctuary—crafted slowly, deliberately, and in harmony with the landscape.]'
   const founderPhoto =
     founder?.founderPhoto?.trim() ||
     firstMember?.photoUrl?.trim() ||

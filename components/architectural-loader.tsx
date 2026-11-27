@@ -28,7 +28,7 @@ const LOADER_DURATION_MS = 5000
 
 export function ArchitecturalLoaderProvider({
   children,
-  studioName = 'S_Designs',
+  studioName = 'SYLEN DESIGNS',
   studioSubtitle,
 }: {
   children: React.ReactNode
@@ -250,7 +250,7 @@ export function ArchitecturalLoaderProvider({
       {/* 1. INITIAL WEBSITE ENTRY LOADER (5s) */}
       {initialLoading && (
         <ArchitecturalLoaderView
-          title={studioName || 'S_Designs'}
+          title={studioName || 'SYLEN DESIGNS'}
           subtitle={studioSubtitle}
           progress={initialProgress}
           isExiting={initialExiting}
@@ -260,7 +260,7 @@ export function ArchitecturalLoaderProvider({
       {/* 2. PROJECT NAVIGATION LOADER (5s) */}
       {projectLoading && (
         <ArchitecturalLoaderView
-          title={studioName || 'S_Designs'}
+          title={studioName || 'SYLEN DESIGNS'}
           subtitle={studioSubtitle}
           progress={projectProgress}
           isExiting={projectExiting}

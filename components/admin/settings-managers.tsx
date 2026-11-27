@@ -1791,7 +1791,7 @@ export function HomepageManager({
               value={form.heroStudioName}
               onChange={(e) => updateField('heroStudioName', e.target.value)}
               className="admin-input"
-              placeholder="S_DE_SIGN"
+              placeholder="SYLEN DESIGNS"
             />
           </div>
           <div>

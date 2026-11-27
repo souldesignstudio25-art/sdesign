@@ -29,11 +29,11 @@ export async function generateMetadata({
 
   if (!service) {
     return {
-      title: `Architectural Service — ${siteData.settings.studioName || 'S_DE_SIGN'}`,
+      title: `Architectural Service — ${siteData.settings.studioName || 'SYLEN DESIGNS'}`,
     }
   }
 
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const title = `${service.seoTitle} | ${studioName}`
   const description = service.seoDescription
   const canonicalUrl = `https://sdesign.co.in/services/${service.slug}`
@@ -88,7 +88,7 @@ export default async function ServiceDetailPage({
   if (!service) notFound()
 
   const siteData = await getPublicSiteData()
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const allServices = getAllServices()
   const currentIndex = allServices.findIndex((s) => s.slug === service.slug)
   const nextService = allServices[(currentIndex + 1) % allServices.length]

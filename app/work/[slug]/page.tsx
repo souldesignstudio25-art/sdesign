@@ -27,10 +27,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   ])
 
   if (!project) {
-    return { title: `Project — ${siteData.settings.studioName || 'S_DE_SIGN'}` }
+    return { title: `Project — ${siteData.settings.studioName || 'SYLEN DESIGNS'}` }
   }
 
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const title =
     project.seoTitle?.trim() ||
     `${project.title} — ${project.category ? `${project.category} Architecture — ` : ''}${studioName}`
@@ -96,7 +96,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   ])
   if (!project || allProjects.length === 0) notFound()
 
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const canonicalUrl = `https://sdesign.co.in/work/${project.slug}`
   const projectDesc = project.shortDescription || project.fullDescription || `${project.title} architectural case study in ${project.location}.`
   const publishedDate = project.updatedAt
@@ -136,7 +136,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       headline: `${project.title} — ${project.category || ''} Architecture`,
       description: projectDesc,
       url: canonicalUrl,
-      image: project.mainImage || 'https://sdesign.co.in/s-design-logo.jpg',
+      image: project.mainImage || 'https://sdesign.co.in/icon.png',
       datePublished: publishedDate,
       dateModified: publishedDate,
       inLanguage: 'en',
@@ -161,7 +161,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       '@id': `${canonicalUrl}#video`,
       name: `${project.title} Architectural Film`,
       description: `Cinematic walkthrough and spatial study of ${project.title} in ${project.location}.`,
-      thumbnailUrl: project.mainPosterUrl || project.mainImage || 'https://sdesign.co.in/s-design-logo.jpg',
+      thumbnailUrl: project.mainPosterUrl || project.mainImage || 'https://sdesign.co.in/icon.png',
       uploadDate: publishedDate,
       contentUrl: project.mainVideoUrl.trim(),
     })

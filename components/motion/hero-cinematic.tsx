@@ -35,7 +35,7 @@ export const HeroCinematic = React.memo(function HeroCinematic({
   videoUrl,
   posterUrl,
   targetSectionId = '#studio',
-  studioName = 'S_DE_SIGN',
+  studioName = 'SYLEN DESIGNS',
   studioSubtitle = 'ARCHITECTURE & SPATIAL PRACTICE',
 }: HeroCinematicProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null)
@@ -244,7 +244,7 @@ export const HeroCinematic = React.memo(function HeroCinematic({
       )
 
       // STAGE 6: Studio Typography Reveal (5.8 -> 7.8)
-      // Grand oversized studio name S_DE_SIGN emerges with architectural datum line
+      // Grand oversized studio name SYLEN DESIGNS emerges with architectural datum line
       tl.to(
         brandRevealRef.current,
         {
@@ -259,7 +259,7 @@ export const HeroCinematic = React.memo(function HeroCinematic({
 
       // STAGE 7: Supporting Headline, Description & Exploratory CTA (7.4 -> 9.4)
       // Transition from oversized brand emblem to full editorial hero message:
-      // Completely hides S_DE_SIGN (autoAlpha: 0 sets opacity to 0 and visibility: hidden)
+      // Completely hides SYLEN DESIGNS (autoAlpha: 0 sets opacity to 0 and visibility: hidden)
       tl.to(
         brandRevealRef.current,
         {

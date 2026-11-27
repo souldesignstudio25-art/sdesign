@@ -13,13 +13,13 @@ export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteData = await getPublicSiteData()
-  const studioName = siteData.settings.studioName || 'Sdesign'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const workSeo = siteData.seo?.work
   const title =
     workSeo?.seoTitle?.trim() || `Architecture Portfolio & Selected Works | ${studioName}`
   const description =
     workSeo?.metaDescription?.trim() ||
-    'Explore selected architectural case studies by Sdesign: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.'
+    'Explore selected architectural case studies by Sylen Designs: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.'
   const rawCanonical = workSeo?.canonicalUrl?.trim()
   const canonicalUrl =
     rawCanonical && rawCanonical !== 'https://sdesign.co.in/' && rawCanonical !== 'https://sdesign.co.in'
@@ -48,7 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: workSeo?.ogTitle?.trim() || title,
       description: workSeo?.ogDescription?.trim() || description,
       url: canonicalUrl,
-      siteName: 'Sdesign',
+      siteName: 'SYLEN DESIGNS',
       type: 'website',
       images: [
         {
@@ -68,7 +68,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function WorkPage() {
   const siteData = await getPublicSiteData()
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
 
   const showcaseProjects: Project[] = (siteData.projects || []).map((p) => ({
     slug: p.slug,
@@ -99,7 +99,7 @@ export default async function WorkPage() {
     name: `Architecture Portfolio & Selected Works — ${studioName}`,
     url: 'https://sdesign.co.in/work',
     description:
-      'Curated archive of residential architecture projects, modern luxury villas, and spatial commissions designed by S_DE_SIGN.',
+      'Curated archive of residential architecture projects, modern luxury villas, and spatial commissions designed by Sylen Designs.',
     author: {
       '@type': 'ArchitecturalFirm',
       name: studioName,

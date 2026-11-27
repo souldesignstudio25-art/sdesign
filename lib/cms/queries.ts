@@ -32,9 +32,13 @@ import type {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function stripMongoId<T>(doc: any): T {
-  const { _id, ...rest } = doc || {}
-  void _id
-  return rest as T
+  if (!doc) return doc
+  const { _id, ...rest } = doc
+  const id = rest.id || (_id ? String(_id) : undefined)
+  return {
+    ...rest,
+    ...(id ? { id } : {}),
+  } as T
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

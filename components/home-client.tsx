@@ -743,7 +743,7 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
                 studioInfo.studioImages?.[0] ||
                 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85'
               }
-              alt="S_Designs Studio architecture and materiality"
+              alt="Sylen Designs Studio architecture and materiality"
               className="intro-parallax-stage"
               enableClipReveal
               parallaxSpeed={10}

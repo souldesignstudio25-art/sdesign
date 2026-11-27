@@ -1,4 +1,4 @@
-// GA4 Analytics Client Utility for S_DE_SIGN
+// GA4 Analytics Client Utility for SYLEN DESIGNS
 // Handles GA4 initialization, page view tracking, and custom engagement events.
 // Ensures strict privacy by stripping all personally identifiable information (PII).
 
@@ -96,7 +96,7 @@ export function trackPageView({ page_path, page_title, page_location }: PageView
 }
 
 // ============================================================
-// Custom S_DE_SIGN Events
+// Custom SYLEN DESIGNS Events
 // ============================================================
 
 /**

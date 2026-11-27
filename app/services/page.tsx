@@ -13,14 +13,14 @@ export const dynamic = 'force-dynamic'
 
 export async function generateMetadata(): Promise<Metadata> {
   const siteData = await getPublicSiteData()
-  const studioName = siteData.settings.studioName || 'Sdesign'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const servicesSeo = siteData.seo?.services
   const title =
     servicesSeo?.seoTitle?.trim() ||
     `Architectural Services — Residential, Interior & Exterior Practice | ${studioName}`
   const description =
     servicesSeo?.metaDescription?.trim() ||
-    'Comprehensive architectural services by Sdesign: modern residential architecture, luxury villa design, interior environments, exterior facades, and landscape integration in Kerala, India, and worldwide.'
+    'Comprehensive architectural services by Sylen Designs: modern residential architecture, luxury villa design, interior environments, exterior facades, and landscape integration in Kerala, India, and worldwide.'
   const rawCanonical = servicesSeo?.canonicalUrl?.trim()
   const canonicalUrl =
     rawCanonical && rawCanonical !== 'https://sdesign.co.in/' && rawCanonical !== 'https://sdesign.co.in'
@@ -49,7 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: servicesSeo?.ogTitle?.trim() || title,
       description: servicesSeo?.ogDescription?.trim() || description,
       url: canonicalUrl,
-      siteName: 'Sdesign',
+      siteName: 'SYLEN DESIGNS',
       type: 'website',
       images: [
         {
@@ -78,13 +78,13 @@ const SERVICE_ICONS: Record<string, React.ReactNode> = {
 
 export default async function ServicesIndexPage() {
   const siteData = await getPublicSiteData()
-  const studioName = siteData.settings.studioName || 'S_DE_SIGN'
+  const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const services = getAllServices()
 
   const servicesStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Architectural Design Services — S_DE_SIGN',
+    name: 'Architectural Design Services — SYLEN DESIGNS',
     url: 'https://sdesign.co.in/services',
     description:
       'Full-scope architectural consultancy, luxury residential architecture, interior environments, facade engineering, and landscape spatial design.',
@@ -145,7 +145,7 @@ export default async function ServicesIndexPage() {
 
         <p className="lead-paragraph text-lg sm:text-xl text-[#a8a195] font-light max-w-3xl mt-8 leading-relaxed">
           From early site feasibility and daylight choreography to bespoke construction detailing,
-          S_DE_SIGN provides comprehensive architectural services tailored for discerning clients
+          Sylen Designs provides comprehensive architectural services tailored for discerning clients
           in Kerala, India, and worldwide.
         </p>
 
@@ -215,7 +215,7 @@ export default async function ServicesIndexPage() {
       <section className="services-methodology py-24 px-6 sm:px-12 bg-[#171614] border-t border-b border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="section-kicker font-mono text-xs uppercase tracking-widest text-[#d9b686] mb-4">
-            ( METHODOLOGY ) <span>THE S_DE_SIGN APPROACH</span>
+            ( METHODOLOGY ) <span>THE SYLEN DESIGNS APPROACH</span>
           </div>
 
           <h2 className="font-serif text-3xl sm:text-4xl text-[#f4efe6] mb-12">

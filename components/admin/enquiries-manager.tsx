@@ -295,14 +295,15 @@ export function EnquiriesManager({
         </div>
       ) : (
         <div className="space-y-3">
-          {filteredInquiries.map((item) => {
+          {filteredInquiries.map((item, index) => {
             const isNew = item.status === 'new'
             const isContacted = item.status === 'contacted'
             const isArchived = item.status === 'archived'
+            const itemKey = item.id || (item as unknown as { _id?: string })._id || `enquiry-${index}`
 
             return (
               <div
-                key={item.id}
+                key={itemKey}
                 onClick={() => openDetails(item)}
                 className={`admin-card p-5 cursor-pointer transition-all hover:border-[#b68d54] hover:shadow-md ${
                   isNew ? 'border-l-4 border-l-[#b68d54] bg-[#fbf9f6]' : 'bg-white'
@@ -377,9 +378,9 @@ export function EnquiriesManager({
                   >
                     <select
                       value={item.status}
-                      disabled={updatingId === item.id}
+                      disabled={updatingId === (item.id || itemKey)}
                       onChange={(e) =>
-                        handleStatusChange(item.id, e.target.value as EnquiryStatus)
+                        handleStatusChange(item.id || itemKey, e.target.value as EnquiryStatus)
                       }
                       className="admin-input text-xs py-1 px-2 font-medium bg-white"
                     >
@@ -389,7 +390,7 @@ export function EnquiriesManager({
                     </select>
 
                     <a
-                      href={`mailto:${item.email}?subject=Regarding%20your%20project%20inquiry%20%E2%80%94%20S_Designs`}
+                      href={`mailto:${item.email}?subject=Regarding%20your%20project%20inquiry%20%E2%80%94%20Sylen%20Designs`}
                       className="p-1.5 text-[#7c7367] hover:text-[#1c1a17] hover:bg-[#ede7dc] rounded transition-colors"
                       title="Reply via Email"
                     >
@@ -398,8 +399,8 @@ export function EnquiriesManager({
 
                     <button
                       type="button"
-                      disabled={deletingId === item.id}
-                      onClick={() => handleDelete(item.id)}
+                      disabled={deletingId === (item.id || itemKey)}
+                      onClick={() => handleDelete(item.id || itemKey)}
                       className="p-1.5 text-[#9a4242] hover:bg-red-50 rounded transition-colors"
                       title="Delete inquiry"
                     >
@@ -444,7 +445,7 @@ export function EnquiriesManager({
             {/* Quick Contact & Action Buttons */}
             <div className="flex flex-wrap items-center gap-3">
               <a
-                href={`mailto:${selectedEnquiry.email}?subject=Regarding%20your%20project%20inquiry%20%E2%80%94%20S_Designs`}
+                href={`mailto:${selectedEnquiry.email}?subject=Regarding%20your%20project%20inquiry%20%E2%80%94%20Sylen%20Designs`}
                 className="admin-btn-primary text-xs py-2 px-3.5 flex items-center gap-2"
               >
                 <Mail className="w-3.5 h-3.5" />

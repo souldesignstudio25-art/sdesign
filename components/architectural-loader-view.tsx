@@ -13,7 +13,7 @@ export interface ArchitecturalLoaderViewProps {
 }
 
 export function ArchitecturalLoaderView({
-  title = 'S_Designs',
+  title = 'SYLEN DESIGNS',
   subtitle,
   progress = 0,
   isExiting = false,

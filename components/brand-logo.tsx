@@ -21,7 +21,7 @@ export function BrandLogo({
   variant = 'glass',
   showSubtitle = true,
   className = '',
-  studioName = 'S_DE_SIGN',
+  studioName = 'SYLEN DESIGNS',
   studioSubtitle = 'ARCHITECTURE / STUDIO',
   lightLogoUrl = '/s-design-emblem-white.png',
   darkLogoUrl = '/s-design-emblem-clean.png',

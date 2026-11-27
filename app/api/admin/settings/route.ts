@@ -21,14 +21,14 @@ export async function PATCH(request: Request) {
   const now = new Date().toISOString()
 
   const payload = {
-    studioName: String(body.studioName ?? 'S_DE_SIGN'),
+    studioName: String(body.studioName ?? 'SYLEN DESIGNS'),
     studioSubtitle: String(body.studioSubtitle ?? 'ARCHITECTURE / STUDIO'),
     tagline: String(body.tagline ?? 'Architecture / Objects'),
     mainLogoUrl: String(body.mainLogoUrl ?? '/s-design-emblem-white.png'),
     altLogoUrl: String(body.altLogoUrl ?? '/s-design-emblem-clean.png'),
     lightLogoUrl: String(body.lightLogoUrl ?? '/s-design-emblem-white.png'),
     darkLogoUrl: String(body.darkLogoUrl ?? '/s-design-emblem-clean.png'),
-    faviconUrl: String(body.faviconUrl ?? '/s-design-logo.jpg'),
+    faviconUrl: String(body.faviconUrl ?? '/favicon.ico'),
     footerLogoUrl: String(body.footerLogoUrl ?? '/s-design-emblem-white.png'),
     brandColors: body.brandColors && typeof body.brandColors === 'object'
       ? body.brandColors
@@ -147,7 +147,7 @@ export async function PATCH(request: Request) {
     pinterestUrl: String(body.pinterestUrl ?? ''),
     linkedinUrl: String(body.linkedinUrl ?? ''),
     otherSocials: Array.isArray(body.otherSocials) ? body.otherSocials : [],
-    footerCopyright: String(body.footerCopyright ?? '© 2024 S_Designs'),
+    footerCopyright: String(body.footerCopyright ?? '© 2026 Sylen Designs. All rights reserved.'),
     contactBot:
       body.contactBot && typeof body.contactBot === 'object'
         ? {

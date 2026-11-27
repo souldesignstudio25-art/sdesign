@@ -46,6 +46,7 @@ export async function POST(request: Request) {
     const userAgent = request.headers.get('user-agent') || 'unknown'
 
     const enquiryDoc = {
+      id: `enq-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
       name,
       email,
       phone: phone || undefined,
