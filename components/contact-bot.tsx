@@ -165,12 +165,14 @@ export function ContactBot({
 
   // 3. Resolve Email
   const emailRaw = (botSettings.email?.value ?? email ?? 'sylen@sdesign.co.in').trim()
+  const targetEmail =
+    emailRaw && !emailRaw.includes('gmail.com') && !emailRaw.includes('sdesigns.studio')
+      ? emailRaw
+      : 'sylen@sdesign.co.in'
   const isEmailEnabled = botSettings.email?.enabled !== false
   const resolvedMailto =
-    isEmailEnabled && emailRaw
-      ? `mailto:${emailRaw}?subject=${encodeURIComponent(
-          'Website Enquiry — Sylen Design'
-        )}&body=${encodeURIComponent("Hello Sylen Design,\n\nI'm interested in discussing an architectural project.")}`
+    isEmailEnabled && targetEmail
+      ? `mailto:${targetEmail}?subject=${encodeURIComponent('Enquiry — Sylen Design')}`
       : ''
 
   // 4. Resolve Facebook
