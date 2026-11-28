@@ -2,8 +2,11 @@
 // Handles GA4 initialization, page view tracking, and custom engagement events.
 // Ensures strict privacy by stripping all personally identifiable information (PII).
 
+export const GTM_CONTAINER_ID =
+  process.env.NEXT_PUBLIC_GTM_ID || 'GTM-TSN6DC2H'
+
 export const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-6FLZ8FXZC0'
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-MQQXB4K74G'
 
 declare global {
   interface Window {
@@ -57,22 +60,23 @@ function sanitizeEventParams(params: Record<string, unknown> = {}): Record<strin
 }
 
 /**
- * Dispatch an event to Google Analytics via gtag
+ * Dispatch an event to Google Tag Manager (dataLayer) and Google Analytics via gtag
  */
 export function sendGAEvent(eventName: string, params: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return
 
   const safeParams = sanitizeEventParams(params)
 
+  // Push to dataLayer for Google Tag Manager (GTM)
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
+    event: eventName,
+    ...safeParams,
+  })
+
+  // Also dispatch to window.gtag if available
   if (typeof window.gtag === 'function') {
     window.gtag('event', eventName, safeParams)
-  } else {
-    // Queue event if gtag has not finished loading yet
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push({
-      event: eventName,
-      ...safeParams,
-    })
   }
 }
 

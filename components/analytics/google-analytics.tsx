@@ -3,9 +3,9 @@
 import React, { Suspense, useEffect, useRef } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
-import { GA_MEASUREMENT_ID, trackPageView } from '@/lib/analytics/ga4'
+import { GTM_CONTAINER_ID, trackPageView } from '@/lib/analytics/ga4'
 
-function GA4RouteTracker() {
+function GTMRouteTracker() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const lastTrackedUrl = useRef<string | null>(null)
@@ -13,13 +13,13 @@ function GA4RouteTracker() {
   useEffect(() => {
     if (!pathname) return
 
-    // Requirement 5: Do not track admin routes as public website page views
+    // Do not track admin routes as public website page views
     if (pathname.startsWith('/admin')) return
 
     const search = searchParams?.toString()
     const url = search ? `${pathname}?${search}` : pathname
 
-    // Requirement 2: Prevent duplicate page_view events on client-side navigation
+    // Prevent duplicate page_view events on client-side navigation
     if (lastTrackedUrl.current === url) return
     lastTrackedUrl.current = url
 
@@ -33,33 +33,47 @@ function GA4RouteTracker() {
   return null
 }
 
-export function GoogleAnalytics() {
-  if (!GA_MEASUREMENT_ID) return null
+export function GoogleTagManager() {
+  if (!GTM_CONTAINER_ID) return null
 
   return (
     <>
       <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-      />
-      <Script
-        id="google-analytics-init"
+        id="google-tag-manager"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              send_page_view: false,
-              anonymize_ip: true
-            });
-          `,
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${GTM_CONTAINER_ID}');`,
         }}
       />
       <Suspense fallback={null}>
-        <GA4RouteTracker />
+        <GTMRouteTracker />
       </Suspense>
     </>
   )
 }
+
+/**
+ * Fallback noscript iframe for users with JavaScript disabled.
+ * Placed immediately after the opening <body> tag.
+ */
+export function GoogleTagManagerNoscript() {
+  if (!GTM_CONTAINER_ID) return null
+
+  return (
+    <noscript>
+      <iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID}`}
+        height="0"
+        width="0"
+        style={{ display: 'none', visibility: 'hidden' }}
+      />
+    </noscript>
+  )
+}
+
+// Backwards-compatible alias for existing layout references
+export const GoogleAnalytics = GoogleTagManager

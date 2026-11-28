@@ -5,7 +5,7 @@ import ClickSpark from '@/components/ClickSpark'
 import { ArchitecturalLoaderProvider } from '@/components/architectural-loader'
 import { MediaProtectionGuard } from '@/components/media-protection-guard'
 import { SiteAccessories } from '@/components/site-accessories'
-import { GoogleAnalytics } from '@/components/analytics/google-analytics'
+import { GoogleTagManager, GoogleTagManagerNoscript } from '@/components/analytics/google-analytics'
 import { getPublicSiteData } from '@/lib/cms/queries'
 import './globals.css'
 
@@ -178,6 +178,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning style={bodyStyle as React.CSSProperties}>
+        <GoogleTagManagerNoscript />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: organizationJson }}
@@ -210,7 +211,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
           linkedinUrl={data.settings.linkedinUrl}
         />
         <MediaProtectionGuard />
-        <GoogleAnalytics />
+        <GoogleTagManager />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
