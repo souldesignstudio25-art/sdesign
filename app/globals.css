@@ -2752,10 +2752,10 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
 }
 .story-brand-primary {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(60px, 13.5vw, 218px);
+  font-size: clamp(66px, 15vw, 246px);
   font-weight: 400;
   line-height: 0.88;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #ffffff;
   text-shadow: 0 4px 40px rgba(0, 0, 0, 0.65);
@@ -2767,13 +2767,13 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
 }
 .story-brand-secondary {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(14px, 3.2vw, 52px);
+  font-size: clamp(17px, 4vw, 64px);
   font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: 0.28em;
+  line-height: 1.05;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   margin: 0;
-  margin-top: clamp(4px, 0.7vw, 10px);
+  margin-top: clamp(6px, 0.9vw, 14px);
   color: #ffffff;
   text-shadow: 0 3px 25px rgba(0, 0, 0, 0.6);
   background: linear-gradient(135deg, #ffffff 0%, #ede6db 60%, #bfa47d 100%);
@@ -2784,11 +2784,11 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
 }
 .story-brand-subtitle {
   font-family: var(--font-mono), monospace;
-  font-size: clamp(9px, 1.1vw, 13px);
+  font-size: clamp(11px, 1.35vw, 16px);
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: #eedcc6;
-  margin-top: clamp(12px, 1.6vw, 22px);
+  margin-top: clamp(16px, 1.8vw, 26px);
   opacity: 0.88;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
 }
@@ -3610,14 +3610,15 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
     right: calc((100vw - 1520px) / 2);
   }
   .story-brand-reveal .story-brand-primary {
-    font-size: clamp(135px, 12vw, 258px);
+    font-size: clamp(152px, 13.5vw, 290px);
   }
   .story-brand-reveal .story-brand-secondary {
-    font-size: clamp(32px, 3vw, 62px);
-    margin-top: 12px;
+    font-size: clamp(39px, 3.6vw, 76px);
+    margin-top: 14px;
   }
   .story-brand-reveal .story-brand-subtitle {
-    margin-top: 24px;
+    font-size: clamp(14px, 1.1vw, 18px);
+    margin-top: 28px;
   }
 
   .intro-copy {
@@ -3879,14 +3880,15 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
     font-size: 13px;
   }
   .story-brand-reveal .story-brand-primary {
-    font-size: clamp(172px, 11.5vw, 318px);
+    font-size: clamp(192px, 12.8vw, 356px);
   }
   .story-brand-reveal .story-brand-secondary {
-    font-size: clamp(42px, 2.9vw, 76px);
-    margin-top: 15px;
+    font-size: clamp(51px, 3.5vw, 92px);
+    margin-top: 18px;
   }
   .story-brand-reveal .story-brand-subtitle {
-    margin-top: 28px;
+    font-size: clamp(16px, 1vw, 20px);
+    margin-top: 32px;
   }
 
   .intro-copy {
