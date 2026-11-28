@@ -38,6 +38,11 @@ export const HeroCinematic = React.memo(function HeroCinematic({
   studioName = 'SYLEN DESIGNS',
   studioSubtitle = 'ARCHITECTURE & SPATIAL PRACTICE',
 }: HeroCinematicProps) {
+  // Split studioName into dominant primary word (SYLEN) and secondary word (DESIGNS)
+  const brandWords = (studioName || 'SYLEN DESIGNS').trim().split(/\s+/)
+  const brandPrimary = brandWords[0] || 'SYLEN'
+  const brandSecondary = brandWords.slice(1).join(' ')
+
   const wrapperRef = useRef<HTMLDivElement | null>(null)
   const pinnedRef = useRef<HTMLDivElement | null>(null)
   const imageRef = useRef<HTMLDivElement | null>(null)
@@ -508,7 +513,12 @@ export const HeroCinematic = React.memo(function HeroCinematic({
             <span className="ruler-badge">DRAFTING SHEET 01 / FORM</span>
             <span className="ruler-line" />
           </div>
-          <h2 className="story-brand-title">{studioName}</h2>
+          <h2 className="story-brand-title">
+            <span className="story-brand-primary">{brandPrimary}</span>
+            {brandSecondary && (
+              <span className="story-brand-secondary">{brandSecondary}</span>
+            )}
+          </h2>
           <p className="story-brand-subtitle">{studioSubtitle}</p>
         </div>
 

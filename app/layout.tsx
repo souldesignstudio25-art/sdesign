@@ -13,10 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const data = await getPublicSiteData()
   const homeSeo = data.seo?.home
   const title =
-    homeSeo?.seoTitle || 'SYLEN DESIGNS | Architecture, Exteriors, Interiors, Firms & Studio'
+    homeSeo?.seoTitle || 'SYLEN Design | Architecture, Exteriors, Interiors, Firms & Studio'
   const description =
     homeSeo?.metaDescription ||
-    'Sylen Designs is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.'
+    'Sylen Design is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.'
   const ogImage = homeSeo?.ogImage || '/icon.png'
 
   return {
@@ -54,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title: homeSeo?.ogTitle || title,
       description: homeSeo?.ogDescription || description,
       url: 'https://sdesign.co.in/',
-      siteName: 'SYLEN DESIGNS',
+      siteName: 'SYLEN DESIGN',
       type: 'website',
       images: [ogImage],
     },

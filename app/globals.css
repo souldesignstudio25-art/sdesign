@@ -2743,19 +2743,44 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
   color: var(--bronze-light);
 }
 .story-brand-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  text-align: center;
+}
+.story-brand-primary {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: clamp(68px, 11vw, 175px);
+  font-size: clamp(60px, 13.5vw, 218px);
   font-weight: 400;
   line-height: 0.88;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin: 0;
   color: #ffffff;
   text-shadow: 0 4px 40px rgba(0, 0, 0, 0.65);
   background: linear-gradient(135deg, #ffffff 0%, #f4ede3 55%, #cbb18a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: block;
+}
+.story-brand-secondary {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(14px, 3.2vw, 52px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin: 0;
+  margin-top: clamp(4px, 0.7vw, 10px);
+  color: #ffffff;
+  text-shadow: 0 3px 25px rgba(0, 0, 0, 0.6);
+  background: linear-gradient(135deg, #ffffff 0%, #ede6db 60%, #bfa47d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
 }
 .story-brand-subtitle {
   font-family: var(--font-mono), monospace;
@@ -2763,7 +2788,7 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: #eedcc6;
-  margin-top: 20px;
+  margin-top: clamp(12px, 1.6vw, 22px);
   opacity: 0.88;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
 }
@@ -3584,8 +3609,15 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
   .cinematic-hero-index {
     right: calc((100vw - 1520px) / 2);
   }
-  .story-brand-reveal .story-brand-title {
-    font-size: clamp(110px, 10vw, 210px);
+  .story-brand-reveal .story-brand-primary {
+    font-size: clamp(135px, 12vw, 258px);
+  }
+  .story-brand-reveal .story-brand-secondary {
+    font-size: clamp(32px, 3vw, 62px);
+    margin-top: 12px;
+  }
+  .story-brand-reveal .story-brand-subtitle {
+    margin-top: 24px;
   }
 
   .intro-copy {
@@ -3846,8 +3878,15 @@ html.nav-locked, body.nav-locked { overflow: hidden !important; }
     right: calc((100vw - 1920px) / 2);
     font-size: 13px;
   }
-  .story-brand-reveal .story-brand-title {
-    font-size: clamp(140px, 9.5vw, 260px);
+  .story-brand-reveal .story-brand-primary {
+    font-size: clamp(172px, 11.5vw, 318px);
+  }
+  .story-brand-reveal .story-brand-secondary {
+    font-size: clamp(42px, 2.9vw, 76px);
+    margin-top: 15px;
+  }
+  .story-brand-reveal .story-brand-subtitle {
+    margin-top: 28px;
   }
 
   .intro-copy {
