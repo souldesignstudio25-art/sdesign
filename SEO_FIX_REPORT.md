@@ -69,7 +69,7 @@ Sitemap: https://sdesign.co.in/sitemap.xml
 - https://sdesign.co.in/work/: Project case‑studies (list of residential, commercial, interior, landscape, renovation projects).
 
 ## Contact
-- Email: adithiruthiparambil12@gmail.com
+- Email: sylen@sdesign.co.in
 - City: Chennai, India
 ```
 *Placement:* root of the domain. Helps LLMs (ChatGPT, Perplexity, Gemini) understand the brand and service area.

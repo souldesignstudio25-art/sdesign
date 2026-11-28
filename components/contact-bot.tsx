@@ -28,7 +28,7 @@ function sanitizeHttpUrl(val: string): string {
 
 export function ContactBot({
   contactBotSettings,
-  email = 'adithiruthiparambil12@gmail.com',
+  email = 'sylen@sdesign.co.in',
   phone = '',
   whatsapp = '',
   instagramUrl = '',
@@ -164,13 +164,13 @@ export function ContactBot({
   }
 
   // 3. Resolve Email
-  const emailRaw = (botSettings.email?.value ?? email ?? '').trim()
+  const emailRaw = (botSettings.email?.value ?? email ?? 'sylen@sdesign.co.in').trim()
   const isEmailEnabled = botSettings.email?.enabled !== false
   const resolvedMailto =
     isEmailEnabled && emailRaw
       ? `mailto:${emailRaw}?subject=${encodeURIComponent(
-          'Project Inquiry — Sylen Designs'
-        )}&body=${encodeURIComponent("Hello Sylen Designs,\n\nI'm interested in discussing a project.")}`
+          'Website Enquiry — Sylen Design'
+        )}&body=${encodeURIComponent("Hello Sylen Design,\n\nI'm interested in discussing an architectural project.")}`
       : ''
 
   // 4. Resolve Facebook

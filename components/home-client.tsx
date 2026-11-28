@@ -968,12 +968,12 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
               <p>{homepage.contactDescription}</p>
               <div className="contact-details">
                 <a
-                  href={`mailto:${settings.email}`}
+                  href={`mailto:${settings.email || 'sylen@sdesign.co.in'}?subject=${encodeURIComponent('Website Enquiry — Sylen Design')}`}
                   onClick={() => trackEmailClick('contact_section')}
                   className="hover:text-[var(--bronze,#d9b686)] transition-colors cursor-target"
                   data-cursor-label="Email"
                 >
-                  {settings.email}
+                  {settings.email || 'sylen@sdesign.co.in'}
                 </a>
                 <span>{settings.officeAddress}</span>
               </div>

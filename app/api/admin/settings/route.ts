@@ -136,7 +136,7 @@ export async function PATCH(request: Request) {
           contactBodySize: '14px',
           kickerSize: '10px',
         },
-    email: String(body.email ?? 'adithiruthiparambil12@gmail.com'),
+    email: String(body.email ?? 'sylen@sdesign.co.in'),
     phone: String(body.phone ?? ''),
     whatsapp: String(body.whatsapp ?? ''),
     officeAddress: String(body.officeAddress ?? 'Kerala · India'),

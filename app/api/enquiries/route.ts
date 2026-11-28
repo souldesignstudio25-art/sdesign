@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getMongoDb } from '@/lib/mongodb/client'
-import { sendEnquiryNotificationEmail } from '@/lib/email/resend'
+import { sendEnquiryNotificationEmail } from '@/lib/email/mailer'
 import { checkRateLimit } from '@/lib/security/rate-limit'
 
 export async function POST(request: Request) {
@@ -68,45 +68,40 @@ export async function POST(request: Request) {
       insertedId = result.insertedId.toString()
     }
 
-    // Lookup recipient studio email from env, website settings, or default fallback
-    let studioEmail = process.env.STUDIO_NOTIFICATION_EMAIL || ''
-    if (!studioEmail && db) {
-      try {
-        const settingsDoc = await db.collection('websiteSettings').findOne({ _id: 'default' as unknown as never })
-        if (settingsDoc?.email && settingsDoc.email !== 'hello@sdesigns.studio') {
-          studioEmail = settingsDoc.email
-        }
-      } catch {
-        // Fallback to default
-      }
-    }
-    if (!studioEmail) {
-      studioEmail = 'adithiruthiparambil12@gmail.com'
-    }
+    // Trigger email notification via Hostinger SMTP (Studio notification + Visitor acknowledgement)
+    let studioDelivered = false
+    let visitorDelivered = false
 
-    // Trigger email notification asynchronously via Resend
-    sendEnquiryNotificationEmail({
-      name,
-      email,
-      phone,
-      location,
-      projectType,
-      budget,
-      message,
-      recipientEmail: studioEmail,
-    }).catch((err) => {
+    try {
+      const emailResult = await sendEnquiryNotificationEmail({
+        name,
+        email,
+        phone,
+        location,
+        projectType,
+        budget,
+        message,
+      })
+      studioDelivered = emailResult.studioDelivered
+      visitorDelivered = emailResult.visitorDelivered
+    } catch (err) {
       console.warn('[Enquiry Email Delivery Exception]:', err)
-    })
+      studioDelivered = false
+      visitorDelivered = false
+    }
 
     return NextResponse.json({
       success: true,
       id: insertedId,
+      studioDelivered,
+      visitorDelivered,
+      emailDelivered: studioDelivered,
       message: 'Thank you. Your enquiry has been received and our studio will be in touch shortly.',
     })
   } catch (err) {
     console.error('[Enquiry API Error]:', err)
     return NextResponse.json(
-      { error: err instanceof Error ? err.message : 'Failed to submit enquiry. Please try again.' },
+      { error: 'Something went wrong while processing your enquiry. Please try again.' },
       { status: 500 }
     )
   }

@@ -222,12 +222,12 @@ export function FullNavOverlay({
           <div className="footer-meta-col">
             <span className="meta-label">INQUIRIES</span>
             <a
-              href={`mailto:${settings?.email || 'adithiruthiparambil12@gmail.com'}`}
+              href={`mailto:${settings?.email || 'sylen@sdesign.co.in'}?subject=${encodeURIComponent('Website Enquiry — Sylen Design')}`}
               onClick={() => trackEmailClick('full_nav_overlay')}
               className="meta-value cursor-target"
               data-cursor-label="Contact"
             >
-              {settings?.email || 'adithiruthiparambil12@gmail.com'}
+              {settings?.email || 'sylen@sdesign.co.in'}
             </a>
           </div>
           <div className="footer-meta-col">

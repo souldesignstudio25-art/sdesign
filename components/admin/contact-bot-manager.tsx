@@ -174,7 +174,7 @@ export function ContactBotManager({
       errs.whatsapp = 'Please enter a valid phone number (e.g. +351 912 345 678) or a wa.me link'
     }
     if (form.email.value && !isValidEmail(form.email.value)) {
-      errs.email = 'Please enter a valid email address (e.g. hello@sdesigns.studio)'
+      errs.email = 'Please enter a valid email address (e.g. sylen@sdesign.co.in)'
     }
     if (form.facebook.url && !isValidUrl(form.facebook.url)) {
       errs.facebook = 'Please enter a valid Facebook URL (e.g. https://facebook.com/sdesigns.studio)'
@@ -260,7 +260,7 @@ export function ContactBotManager({
       icon: Mail,
       urlOrValue: form.email.value,
       enabled: form.email.enabled,
-      placeholder: 'hello@sdesigns.studio',
+      placeholder: 'sylen@sdesign.co.in',
       helper: 'Launches visitor email client with a prefilled inquiry.',
       type: 'email',
       valueProp: 'value' as const,

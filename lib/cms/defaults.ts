@@ -275,7 +275,7 @@ export const DEFAULT_CONTACT_BOT_SETTINGS: ContactBotSettings = {
   },
   email: {
     enabled: true,
-    value: 'adithiruthiparambil12@gmail.com',
+    value: 'sylen@sdesign.co.in',
   },
   facebook: {
     enabled: true,
@@ -353,7 +353,7 @@ export const DEFAULT_SETTINGS: CmsWebsiteSettings = {
     contactBodySize: '14px',
     kickerSize: '10px',
   },
-  email: 'adithiruthiparambil12@gmail.com',
+  email: 'sylen@sdesign.co.in',
   phone: '',
   whatsapp: '',
   officeAddress: 'Kerala · India',
