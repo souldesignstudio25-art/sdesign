@@ -1137,26 +1137,46 @@ export function HomeClient({ siteData }: { siteData: PublicSiteData }) {
             )
           })}
         </div>
-        <div className="socials">
-          <a
-            href={settings.instagramUrl || '#top'}
-            target={settings.instagramUrl ? '_blank' : undefined}
-            rel={settings.instagramUrl ? 'noopener noreferrer' : undefined}
-            aria-label="Instagram"
-            className="cursor-target"
-          >
-            Instagram
-          </a>
-          <a
-            href={settings.linkedinUrl || '#top'}
-            target={settings.linkedinUrl ? '_blank' : undefined}
-            rel={settings.linkedinUrl ? 'noopener noreferrer' : undefined}
-            aria-label="LinkedIn"
-            className="cursor-target"
-          >
-            LinkedIn
-          </a>
-          <span>{settings.footerCopyright}</span>
+        <div className="footer-right-col">
+          <div className="socials">
+            <a
+              href={settings.instagramUrl || '#top'}
+              target={settings.instagramUrl ? '_blank' : undefined}
+              rel={settings.instagramUrl ? 'noopener noreferrer' : undefined}
+              aria-label="Instagram"
+              className="cursor-target"
+            >
+              Instagram
+            </a>
+            <a
+              href={settings.linkedinUrl || '#top'}
+              target={settings.linkedinUrl ? '_blank' : undefined}
+              rel={settings.linkedinUrl ? 'noopener noreferrer' : undefined}
+              aria-label="LinkedIn"
+              className="cursor-target"
+            >
+              LinkedIn
+            </a>
+            <span>{settings.footerCopyright}</span>
+          </div>
+          <div className="footer-badge-wrap">
+            <a
+              href="https://websitelaunches.com/site/sylendesign.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View SYLEN DESIGNS public launch record on Website Launches"
+              className="footer-launch-badge cursor-target"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://websitelaunches.com/badge/sylendesign.com.svg?theme=dark"
+                alt="Established online - Public launch record"
+                width={255}
+                height={55}
+                loading="lazy"
+              />
+            </a>
+          </div>
         </div>
       </footer>
     </main>
