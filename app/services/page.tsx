@@ -23,9 +23,9 @@ export async function generateMetadata(): Promise<Metadata> {
     'Comprehensive architectural services by Sylen Designs: modern residential architecture, luxury villa design, interior environments, exterior facades, and landscape integration in Kerala, India, and worldwide.'
   const rawCanonical = servicesSeo?.canonicalUrl?.trim()
   const canonicalUrl =
-    rawCanonical && rawCanonical !== 'https://sdesign.co.in/' && rawCanonical !== 'https://sdesign.co.in'
+    rawCanonical && rawCanonical !== 'https://sylendesign.com/' && rawCanonical !== 'https://sylendesign.com'
       ? rawCanonical
-      : 'https://sdesign.co.in/services'
+      : 'https://sylendesign.com/services'
   const ogImage = servicesSeo?.ogImage?.trim() || siteData.settings.mainLogoUrl || '/icon.png'
 
   return {
@@ -85,13 +85,13 @@ export default async function ServicesIndexPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Architectural Design Services — SYLEN DESIGNS',
-    url: 'https://sdesign.co.in/services',
+    url: 'https://sylendesign.com/services',
     description:
       'Full-scope architectural consultancy, luxury residential architecture, interior environments, facade engineering, and landscape spatial design.',
     provider: {
       '@type': 'ArchitecturalFirm',
       name: studioName,
-      url: 'https://sdesign.co.in',
+      url: 'https://sylendesign.com',
     },
     mainEntity: {
       '@type': 'ItemList',
@@ -101,7 +101,7 @@ export default async function ServicesIndexPage() {
         item: {
           '@type': 'Service',
           name: service.title,
-          url: `https://sdesign.co.in/services/${service.slug}`,
+          url: `https://sylendesign.com/services/${service.slug}`,
           description: service.leadParagraph,
           provider: {
             '@type': 'ArchitecturalFirm',

@@ -36,7 +36,7 @@ export async function generateMetadata({
   const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
   const title = `${service.seoTitle} | ${studioName}`
   const description = service.seoDescription
-  const canonicalUrl = `https://sdesign.co.in/services/${service.slug}`
+  const canonicalUrl = `https://sylendesign.com/services/${service.slug}`
   const ogImage = siteData.settings.mainLogoUrl || '/icon.png'
 
   return {
@@ -99,7 +99,7 @@ export default async function ServiceDetailPage({
     service.featuredProjectSlugs.includes(p.slug)
   )
 
-  const canonicalUrl = `https://sdesign.co.in/services/${service.slug}`
+  const canonicalUrl = `https://sylendesign.com/services/${service.slug}`
 
   // Schema.org Graph: BreadcrumbList, Service, FAQPage
   const structuredDataGraph: any[] = [
@@ -111,13 +111,13 @@ export default async function ServiceDetailPage({
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://sdesign.co.in',
+          item: 'https://sylendesign.com',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Services',
-          item: 'https://sdesign.co.in/services',
+          item: 'https://sylendesign.com/services',
         },
         {
           '@type': 'ListItem',
@@ -135,8 +135,8 @@ export default async function ServiceDetailPage({
       provider: {
         '@type': 'ArchitecturalFirm',
         name: studioName,
-        url: 'https://sdesign.co.in',
-        logo: 'https://sdesign.co.in/icon.png',
+        url: 'https://sylendesign.com',
+        logo: 'https://sylendesign.com/icon.png',
         areaServed: ['Kerala, India', 'India', 'Worldwide'],
       },
       serviceType: service.shortTitle,

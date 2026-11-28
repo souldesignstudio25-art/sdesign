@@ -32,10 +32,32 @@ const nextConfig = {
         has: [
           {
             type: 'host',
+            value: 'www.sylendesign.com',
+          },
+        ],
+        destination: 'https://sylendesign.com/:path*',
+        statusCode: 301,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'sdesign.co.in',
+          },
+        ],
+        destination: 'https://sylendesign.com/:path*',
+        statusCode: 301,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
             value: 'www.sdesign.co.in',
           },
         ],
-        destination: 'https://sdesign.co.in/:path*',
+        destination: 'https://sylendesign.com/:path*',
         statusCode: 301,
       },
     ]

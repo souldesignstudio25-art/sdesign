@@ -22,9 +22,9 @@ export async function generateMetadata(): Promise<Metadata> {
     'Explore selected architectural case studies by Sylen Designs: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.'
   const rawCanonical = workSeo?.canonicalUrl?.trim()
   const canonicalUrl =
-    rawCanonical && rawCanonical !== 'https://sdesign.co.in/' && rawCanonical !== 'https://sdesign.co.in'
+    rawCanonical && rawCanonical !== 'https://sylendesign.com/' && rawCanonical !== 'https://sylendesign.com'
       ? rawCanonical
-      : 'https://sdesign.co.in/work'
+      : 'https://sylendesign.com/work'
   const ogImage = workSeo?.ogImage?.trim() || siteData.settings.mainLogoUrl || '/icon.png'
 
   return {
@@ -97,20 +97,20 @@ export default async function WorkPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: `Architecture Portfolio & Selected Works — ${studioName}`,
-    url: 'https://sdesign.co.in/work',
+    url: 'https://sylendesign.com/work',
     description:
       'Curated archive of residential architecture projects, modern luxury villas, and spatial commissions designed by Sylen Designs.',
     author: {
       '@type': 'ArchitecturalFirm',
       name: studioName,
-      url: 'https://sdesign.co.in',
+      url: 'https://sylendesign.com',
     },
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: showcaseProjects.map((project, idx) => ({
         '@type': 'ListItem',
         position: idx + 1,
-        url: `https://sdesign.co.in/work/${project.slug}`,
+        url: `https://sylendesign.com/work/${project.slug}`,
         name: project.title,
         image: project.image,
         description: project.description,

@@ -20,17 +20,15 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = homeSeo?.ogImage || '/icon.png'
 
   return {
-    metadataBase: new URL('https://sdesign.co.in'),
+    metadataBase: new URL('https://sylendesign.com'),
     title,
     description,
     generator: 'v0.app',
     icons: {
       icon: [
         { url: '/favicon.ico', sizes: 'any' },
-        { url: '/icon.svg', type: 'image/svg+xml' },
         { url: '/icon-48x48.png', sizes: '48x48', type: 'image/png' },
         { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
-        { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
         { url: '/icon.png', sizes: '512x512', type: 'image/png' },
       ],
       shortcut: '/favicon.ico',
@@ -39,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
     },
     alternates: {
-      canonical: 'https://sdesign.co.in/',
+      canonical: 'https://sylendesign.com/',
     },
     robots: {
       index: true,
@@ -55,8 +53,8 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: homeSeo?.ogTitle || title,
       description: homeSeo?.ogDescription || description,
-      url: 'https://sdesign.co.in/',
-      siteName: 'SYLEN DESIGN',
+      url: 'https://sylendesign.com/',
+      siteName: 'SYLEN DESIGNS',
       type: 'website',
       images: [ogImage],
     },
@@ -82,9 +80,9 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     '@type': ['ArchitecturalFirm', 'ProfessionalService'],
     name: 'SYLEN DESIGNS',
     alternateName: 'Sylen Designs',
-    url: 'https://sdesign.co.in',
-    logo: 'https://sdesign.co.in/icon.png',
-    image: 'https://sdesign.co.in/icon.png',
+    url: 'https://sylendesign.com',
+    logo: 'https://sylendesign.com/icon.png',
+    image: 'https://sylendesign.com/icon.png',
     description:
       homeSeo?.metaDescription ||
       'Sylen Designs is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.',

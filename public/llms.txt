@@ -2,15 +2,15 @@
 > Sylen Designs is an independent architecture and design studio based in Kerala, India, working across architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.
 
 ## Core Services & Disciplines
-- https://sdesign.co.in/: Home – studio philosophy, approach, and project showcase.
-- https://sdesign.co.in/work/: Architecture portfolio & selected case studies (residential, hospitality, cultural, renovation).
-- https://sdesign.co.in/services/: Architectural design services directory.
-- https://sdesign.co.in/services/residential-architecture: Residential architecture firm & luxury villa design.
-- https://sdesign.co.in/services/interior-architecture: Interior architecture, spatial curation & bespoke millwork.
-- https://sdesign.co.in/services/exterior-architecture: Exterior architecture, building envelopes & facade elevation design.
-- https://sdesign.co.in/services/landscape-architecture: Landscape architecture, reflection pools & courtyard spatial integration.
-- https://sdesign.co.in/services/commercial-architecture: Commercial architecture, boutique hospitality & design ateliers.
-- https://sdesign.co.in/services/renovation-adaptive-reuse: Architectural renovation, historic restoration & adaptive reuse.
+- https://sylendesign.com/: Home – studio philosophy, approach, and project showcase.
+- https://sylendesign.com/work/: Architecture portfolio & selected case studies (residential, hospitality, cultural, renovation).
+- https://sylendesign.com/services/: Architectural design services directory.
+- https://sylendesign.com/services/residential-architecture: Residential architecture firm & luxury villa design.
+- https://sylendesign.com/services/interior-architecture: Interior architecture, spatial curation & bespoke millwork.
+- https://sylendesign.com/services/exterior-architecture: Exterior architecture, building envelopes & facade elevation design.
+- https://sylendesign.com/services/landscape-architecture: Landscape architecture, reflection pools & courtyard spatial integration.
+- https://sylendesign.com/services/commercial-architecture: Commercial architecture, boutique hospitality & design ateliers.
+- https://sylendesign.com/services/renovation-adaptive-reuse: Architectural renovation, historic restoration & adaptive reuse.
 
 ## Locations & Service Areas
 - Kerala, India (Primary Studio Location & Regional Practice)
@@ -18,4 +18,4 @@
 
 ## Contact
 - Email: adithiruthiparambil12@gmail.com
-- Inquiries: https://sdesign.co.in/#contact
+- Inquiries: https://sylendesign.com/#contact

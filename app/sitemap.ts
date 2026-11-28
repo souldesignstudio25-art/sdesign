@@ -5,7 +5,7 @@ import { getAllServices } from '@/lib/cms/services-data'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
-const BASE_URL = 'https://sdesign.co.in'
+const BASE_URL = 'https://sylendesign.com'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteData = await getPublicSiteData()

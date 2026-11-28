@@ -487,7 +487,7 @@ export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
     ogTitle: 'SYLEN DESIGNS | Architecture, Exteriors, Interiors, Firms & Studio',
     ogDescription:
       'Sylen Designs is an independent architecture and design studio based in Kerala, India, specialising in architectural design, exterior design, interior architecture, landscape architecture and 3D architectural visualization.',
-    canonicalUrl: 'https://sdesign.co.in/',
+    canonicalUrl: 'https://sylendesign.com/',
   },
   work: {
     pageKey: 'work',
@@ -498,7 +498,7 @@ export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
     ogTitle: 'Architecture Portfolio & Selected Works | SYLEN DESIGNS',
     ogDescription:
       'Explore selected architectural case studies by Sylen Designs: modern luxury residences, contemporary villas, cultural spaces, and bespoke interior architecture in Kerala, India, and worldwide.',
-    canonicalUrl: 'https://sdesign.co.in/work',
+    canonicalUrl: 'https://sylendesign.com/work',
   },
   services: {
     pageKey: 'services',
@@ -509,7 +509,7 @@ export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
     ogTitle: 'Architectural Services — Residential, Interior & Exterior Practice | SYLEN DESIGNS',
     ogDescription:
       'Comprehensive architectural services by Sylen Designs: modern residential architecture, luxury villa design, interior architecture, exterior elevations, and landscape spatial design.',
-    canonicalUrl: 'https://sdesign.co.in/services',
+    canonicalUrl: 'https://sylendesign.com/services',
   },
   about: {
     pageKey: 'about',
@@ -520,7 +520,7 @@ export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
     ogTitle: 'About Sylen Designs | Architecture Studio & Design Practice',
     ogDescription:
       'Discover Sylen Designs, an independent architecture and spatial design practice in Kerala, India, dedicated to thoughtful spaces, materiality, and light.',
-    canonicalUrl: 'https://sdesign.co.in/#founder',
+    canonicalUrl: 'https://sylendesign.com/#founder',
   },
   contact: {
     pageKey: 'contact',
@@ -531,7 +531,7 @@ export const DEFAULT_SEO: Record<string, CmsSeoSetting> = {
     ogTitle: 'Contact Sylen Designs | Architecture & 3D Visualization Studio',
     ogDescription:
       'Initiate a conversation with Sylen Designs for architectural design, interior architecture, renovations, and 3D visualization commissions.',
-    canonicalUrl: 'https://sdesign.co.in/#contact',
+    canonicalUrl: 'https://sylendesign.com/#contact',
   },
 }
 

@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     project.shortDescription?.trim() ||
     project.fullDescription?.trim() ||
     `${project.title} architectural case study in ${project.location} by ${studioName}.`
-  const canonicalUrl = `https://sdesign.co.in/work/${project.slug}`
+  const canonicalUrl = `https://sylendesign.com/work/${project.slug}`
   const ogImage = project.mainImage || '/icon.png'
 
   return {
@@ -97,7 +97,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   if (!project || allProjects.length === 0) notFound()
 
   const studioName = siteData.settings.studioName || 'SYLEN DESIGNS'
-  const canonicalUrl = `https://sdesign.co.in/work/${project.slug}`
+  const canonicalUrl = `https://sylendesign.com/work/${project.slug}`
   const projectDesc = project.shortDescription || project.fullDescription || `${project.title} architectural case study in ${project.location}.`
   const publishedDate = project.updatedAt
     ? (!isNaN(new Date(project.updatedAt).getTime()) ? new Date(project.updatedAt).toISOString() : new Date().toISOString())
@@ -113,13 +113,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           '@type': 'ListItem',
           position: 1,
           name: 'Home',
-          item: 'https://sdesign.co.in',
+          item: 'https://sylendesign.com',
         },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Selected Work',
-          item: 'https://sdesign.co.in/work',
+          item: 'https://sylendesign.com/work',
         },
         {
           '@type': 'ListItem',
@@ -136,19 +136,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       headline: `${project.title} — ${project.category || ''} Architecture`,
       description: projectDesc,
       url: canonicalUrl,
-      image: project.mainImage || 'https://sdesign.co.in/icon.png',
+      image: project.mainImage || 'https://sylendesign.com/icon.png',
       datePublished: publishedDate,
       dateModified: publishedDate,
       inLanguage: 'en',
       author: {
         '@type': 'Organization',
         name: studioName,
-        url: 'https://sdesign.co.in',
+        url: 'https://sylendesign.com',
       },
       creator: {
         '@type': 'Organization',
         name: studioName,
-        url: 'https://sdesign.co.in',
+        url: 'https://sylendesign.com',
       },
       ...(project.location ? { contentLocation: { '@type': 'Place', name: project.location } } : {}),
       ...(project.year ? { copyrightYear: parseInt(project.year, 10) || undefined } : {}),
@@ -161,7 +161,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       '@id': `${canonicalUrl}#video`,
       name: `${project.title} Architectural Film`,
       description: `Cinematic walkthrough and spatial study of ${project.title} in ${project.location}.`,
-      thumbnailUrl: project.mainPosterUrl || project.mainImage || 'https://sdesign.co.in/icon.png',
+      thumbnailUrl: project.mainPosterUrl || project.mainImage || 'https://sylendesign.com/icon.png',
       uploadDate: publishedDate,
       contentUrl: project.mainVideoUrl.trim(),
     })
