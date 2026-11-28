@@ -60,7 +60,8 @@ function sanitizeEventParams(params: Record<string, unknown> = {}): Record<strin
 }
 
 /**
- * Dispatch an event to Google Tag Manager (dataLayer) and Google Analytics via gtag
+ * Dispatch an event to Google Tag Manager via dataLayer.
+ * Single source of truth under GTM-managed architecture (no duplicate gtag dispatches).
  */
 export function sendGAEvent(eventName: string, params: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return
@@ -73,11 +74,6 @@ export function sendGAEvent(eventName: string, params: Record<string, unknown> =
     event: eventName,
     ...safeParams,
   })
-
-  // Also dispatch to window.gtag if available
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', eventName, safeParams)
-  }
 }
 
 // ============================================================
